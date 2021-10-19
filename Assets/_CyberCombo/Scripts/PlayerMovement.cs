@@ -14,16 +14,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool doubleJump;
     public bool rocketBoots;
+    private Restart _restart;
     
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        _restart = GetComponent<Restart>();
     }
     
     void Update()
     {
+        
+        if (gameObject.transform.localPosition.y < -5)
+        {
+            _restart.Death();
+        }
+        
         horizontal = Input.GetAxis("Horizontal");
 
         /*Crouch Animation
@@ -45,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Double jump toggle
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             rocketBoots = !rocketBoots;
         }
