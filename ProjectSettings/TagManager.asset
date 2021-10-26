@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FireElement
+  - Goal
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Behind Ground
   - 
   - 
   - 
@@ -40,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 3938781963
+    locked: 0
+  - name: Behind ground
+    uniqueID: 1345084679
     locked: 0
   - name: Default
     uniqueID: 0

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_CyberCombo/Scenes/Main menu.unity
     guid: 5717f0386fb2b7a4484ec210e374f78b
+  - enabled: 1
+    path: Assets/_CyberCombo/Scenes/Level 1.unity
+    guid: 6483cf6dea6a1cf40ab72a4d800a7604
+  - enabled: 1
+    path: Assets/_CyberCombo/Scenes/Level 2.unity
+    guid: 8ed4df19715d9f8469464d6a56d0e525
   m_configObjects: {}

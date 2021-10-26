@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool doubleJump;
     public bool rocketBoots;
+    
+    public bool Fire = false;
+    public bool Magnet = false;
+    public bool Ice = false;
+    
     private Restart _restart;
     
     
@@ -27,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        if (gameObject.transform.localPosition.y < -5)
+        if (gameObject.transform.localPosition.y < -10)
         {
             _restart.Death();
         }
