@@ -1139,10 +1139,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5462536997848490292, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-      propertyPath: m_UsedByEffector
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1506,25 +1502,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
   m_PrefabInstance: {fileID: 1027540495}
   m_PrefabAsset: {fileID: 0}
---- !u!251 &1486254774
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486254773}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RotationalOffset: 0
-  m_UseOneWay: 0
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
 --- !u!1 &1673896691
 GameObject:
   m_ObjectHideFlags: 0
