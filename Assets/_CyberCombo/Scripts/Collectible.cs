@@ -48,7 +48,6 @@ public class Collectible : MonoBehaviour
        {
            print("You Win!");
            gameManager.GetComponent<LevelComplete>().LevelCompleted();
-           PlayerPrefs.SetInt("HighestLevel",1);
 
        }
        else if(other.gameObject.CompareTag("Key"))
