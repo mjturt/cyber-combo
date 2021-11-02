@@ -13,7 +13,6 @@ public class Collectible : MonoBehaviour
     public GameObject goalPortal;
     public GameObject unlockButton;
     public GameObject gameManager;
-    public Sprite openPortal;
     public Sprite pressedButton;
     void Start()
    {
@@ -28,7 +27,7 @@ public class Collectible : MonoBehaviour
             {
                 _locked = false;
                 print("Door unlocked!");
-                goalPortal.GetComponent<SpriteRenderer>().sprite = openPortal;
+                goalPortal.GetComponent<Animator>().SetBool("open", true);
                 unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
 
             }

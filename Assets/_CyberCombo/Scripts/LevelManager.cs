@@ -5,14 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public void Lvl1()
+    public void ChangeLevel(int level)
     {
-        SceneManager.LoadScene("Level 1");
-    }
-    
-    public void Lvl2()
-    {
-        SceneManager.LoadScene("Level 2");
+        SceneManager.LoadScene("Level " + level);
     }
 
     public void MenuScene()
