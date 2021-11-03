@@ -184,7 +184,6 @@ MonoBehaviour:
   goalPortal: {fileID: 0}
   unlockButton: {fileID: 0}
   gameManager: {fileID: 0}
-  openPortal: {fileID: 21300000, guid: d8fcb8c238d67384985c27367d784301, type: 3}
   pressedButton: {fileID: 21300000, guid: da37400a15fbdc1499df106d412109dd, type: 3}
 --- !u!251 &1486254774
 PlatformEffector2D:
