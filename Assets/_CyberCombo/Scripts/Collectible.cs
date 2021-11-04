@@ -9,6 +9,7 @@ public class Collectible : MonoBehaviour
     public GameObject _slotSystem;
     private bool _locked = true;
     private bool _canPressButton;
+    private Restart _restart;
 
     public GameObject goalPortal;
     public GameObject unlockButton;
@@ -17,10 +18,11 @@ public class Collectible : MonoBehaviour
     void Start()
    {
        pMovement = GetComponent<PlayerMovement>();
+       _restart = GetComponent<Restart>();
    }
 
     private void Update()
-    {
+    {   //Key picking logic
         if (_canPressButton)
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -44,22 +46,27 @@ public class Collectible : MonoBehaviour
            _slotSystem.SetActive(true);
            pMovement.rocketBoots = true;
        }
+       //End of level handling
        else if (other.gameObject.CompareTag("Goal") && _locked == false)
        {
            print("You Win!");
            gameManager.GetComponent<LevelComplete>().LevelCompleted();
 
        }
+       //On key trigger area logic
        else if(other.gameObject.CompareTag("Key"))
        {
            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
            _canPressButton = true;
        }
        
+       
+       
    }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        //Out of key trigger area logic
         if (other.gameObject.CompareTag("Key"))
         {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
@@ -67,5 +74,11 @@ public class Collectible : MonoBehaviour
         }
     }
 
-    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Danger"))
+        {
+            _restart.Death();
+        }
+    }
 }

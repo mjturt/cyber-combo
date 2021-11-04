@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
+        //Kill player on falling out of map
         if (gameObject.transform.localPosition.y < -10)
         {
             _restart.Death();
