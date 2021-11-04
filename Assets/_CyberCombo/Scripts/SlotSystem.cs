@@ -1,3 +1,4 @@
+using System.Data.Common;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -21,7 +22,7 @@ public class SlotSystem : MonoBehaviour
         imgs = GetComponentsInChildren<Image>();
         uImg1 = imgs[2];
         uImg2 = imgs[3];
-        //uImg3 = imgs[4];
+        uImg3 = imgs[4];
         //dImg1 = imgs[8];
         //dImg2 = imgs[9];
         //dImg3 = imgs[10];
@@ -71,6 +72,28 @@ public class SlotSystem : MonoBehaviour
                         uImg3.enabled = true;
 
                         pM.rocketBoots = true;
+                        break;
+                }
+            }
+            
+            else if (pM.Fire && pM.Ice)
+            {
+
+                switch (uClickCount % 2)
+                {
+                    case 1:
+                        uImg1.enabled = true;
+                        uImg3.enabled = false;
+
+                        pM.rocketBoots = false;
+                        pM.iceBoots = true;
+                        break;
+                    case 0:
+                        uImg1.enabled = false;
+                        uImg3.enabled = true;
+
+                        pM.rocketBoots = true;
+                        pM.iceBoots = false;
                         break;
                 }
             }

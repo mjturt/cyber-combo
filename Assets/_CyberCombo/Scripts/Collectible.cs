@@ -46,6 +46,12 @@ public class Collectible : MonoBehaviour
            _slotSystem.SetActive(true);
            pMovement.rocketBoots = true;
        }
+       else if (other.gameObject.CompareTag("IceElement"))
+       {
+           Destroy(other.gameObject);
+           pMovement.Ice = true;
+       }
+       
        //End of level handling
        else if (other.gameObject.CompareTag("Goal") && _locked == false)
        {
@@ -60,6 +66,11 @@ public class Collectible : MonoBehaviour
            _canPressButton = true;
        }
        
+       else if (other.gameObject.CompareTag("Info"))
+       {
+           other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+       }
+       
        
        
    }
@@ -72,11 +83,19 @@ public class Collectible : MonoBehaviour
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             _canPressButton = false;
         }
+        else if (other.gameObject.CompareTag("Info"))
+        {
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Danger"))
+        {
+            _restart.Death();
+        }
+        else if (other.gameObject.CompareTag("Lava") && !pMovement.iceBoots)
         {
             _restart.Death();
         }

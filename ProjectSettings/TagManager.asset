@@ -8,6 +8,9 @@ TagManager:
   - Goal
   - Key
   - Danger
+  - IceElement
+  - Lava
+  - Info
   layers:
   - Default
   - TransparentFX

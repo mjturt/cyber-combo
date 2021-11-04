@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool doubleJump;
     public bool rocketBoots;
-    
+    public bool iceBoots;
+
     public bool Fire = false;
     public bool Magnet = false;
     public bool Ice = false;
