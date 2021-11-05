@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool Fire = false;
     public bool Magnet = false;
     public bool Ice = false;
+    public bool Gun = false;
     
     private Restart _restart;
     

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collectible : MonoBehaviour
 {
@@ -10,15 +11,21 @@ public class Collectible : MonoBehaviour
     private bool _locked = true;
     private bool _canPressButton;
     private Restart _restart;
+    private SlotSystem slots;
 
     public GameObject goalPortal;
     public GameObject unlockButton;
     public GameObject gameManager;
     public Sprite pressedButton;
+    
+   
+    
     void Start()
    {
        pMovement = GetComponent<PlayerMovement>();
        _restart = GetComponent<Restart>();
+       slots = _slotSystem.GetComponent<SlotSystem>();
+
    }
 
     private void Update()
@@ -65,12 +72,23 @@ public class Collectible : MonoBehaviour
            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
            _canPressButton = true;
        }
-       
+       //Pop info text
        else if (other.gameObject.CompareTag("Info"))
        {
            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
        }
-       
+       else if (other.gameObject.CompareTag("Gun"))
+       {
+           Destroy(other.gameObject);
+           pMovement.Gun = true;
+           
+           slots.imgs[8].enabled = true;
+           slots.imgs[7].enabled = true;
+           slots.imgs[6].enabled = true;
+           slots.imgs[12].enabled = true;
+           slots.imgs[9].enabled = true;
+
+       }
        
        
    }

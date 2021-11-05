@@ -11,6 +11,7 @@ TagManager:
   - IceElement
   - Lava
   - Info
+  - Gun
   layers:
   - Default
   - TransparentFX
