@@ -912,6 +912,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4808581412384206522, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5479d47784c24174e979beedaaee3ce0, type: 3}
+    - target: {fileID: 4808581412384206525, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808581412728090702, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 75f7bff170dd5aa4b860d31821744d11, type: 3}
     - target: {fileID: 4808581412842896088, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
       propertyPath: player
       value: 
@@ -919,6 +931,18 @@ PrefabInstance:
     - target: {fileID: 4808581412842896091, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
       propertyPath: m_Name
       value: SlotSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808581413105744822, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808581413105744822, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808581413105744822, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
