@@ -153,9 +153,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rocketBoots: 0
+  iceBoots: 0
   Fire: 0
   Magnet: 0
   Ice: 0
+  Gun: 0
+  bullet: {fileID: 6712605495508155766, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
 --- !u!114 &306339102
 MonoBehaviour:
   m_ObjectHideFlags: 0

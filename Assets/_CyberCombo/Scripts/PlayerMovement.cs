@@ -20,7 +20,11 @@ public class PlayerMovement : MonoBehaviour
     public bool Magnet = false;
     public bool Ice = false;
     public bool Gun = false;
-    
+
+    private bool hasFired = false;
+    public Rigidbody2D bullet;
+    private Vector3 shootTargetPos;
+
     private Restart _restart;
     
     
@@ -65,6 +69,15 @@ public class PlayerMovement : MonoBehaviour
         {
             rocketBoots = !rocketBoots;
         }
+
+        // Shooting
+        if (Input.GetMouseButtonDown(0))
+        {
+            hasFired = true;
+            shootTargetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            shootTargetPos.z = 0f;                                    
+            shootTargetPos = shootTargetPos - gameObject.transform.localPosition;
+        }
     }
 
     private void FixedUpdate()
@@ -91,6 +104,13 @@ public class PlayerMovement : MonoBehaviour
         {
             hasJumped = false;
         }
+
+        // Shooting
+        if (hasFired && Gun)
+        {
+            Shoot();
+            hasFired = false;
+        }
     }
 
     //Function to check if player is touching ground
@@ -98,5 +118,13 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
+    }
+
+    private void Shoot()
+    {
+        shootTargetPos.Normalize();
+        Debug.Log("ShootVector: " + shootTargetPos);
+        Rigidbody2D bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Rigidbody2D;        
+        bulletItem.velocity.Set(shootTargetPos.x, shootTargetPos.y);
     }
 }
