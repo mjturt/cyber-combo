@@ -125,6 +125,6 @@ public class PlayerMovement : MonoBehaviour
         shootTargetPos.Normalize();
         Debug.Log("ShootVector: " + shootTargetPos);
         Rigidbody2D bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Rigidbody2D;        
-        bulletItem.velocity.Set(shootTargetPos.x, shootTargetPos.y);
+        bulletItem.velocity = shootTargetPos * 10; // Change multiplier to a suitable bullet speed
     }
 }
