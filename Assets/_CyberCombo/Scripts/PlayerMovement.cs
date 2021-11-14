@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             hasJumped = true;
         }
 
-        //Double jump toggle
+        //Double jump toggle (for testing)
         if (Input.GetKeyDown(KeyCode.Z))
         {
             rocketBoots = !rocketBoots;
