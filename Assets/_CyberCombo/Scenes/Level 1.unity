@@ -1075,6 +1075,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: Gun
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: Ice
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: Fire
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: rocketBoots
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_Name
       value: Player

@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private bool doubleJump;
     public bool rocketBoots;
     public bool iceBoots;
+    public bool fireBullet;
+    public bool iceBullet;
 
     public bool Fire = false;
     public bool Magnet = false;
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private bool hasFired = false;
     public Rigidbody2D bullet;
     private Vector3 shootTargetPos;
+    public float bulletSpeed;
 
     private Restart _restart;
     
@@ -125,6 +128,6 @@ public class PlayerMovement : MonoBehaviour
         shootTargetPos.Normalize();
         Debug.Log("ShootVector: " + shootTargetPos);
         Rigidbody2D bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Rigidbody2D;        
-        bulletItem.velocity = shootTargetPos * 10; // Change multiplier to a suitable bullet speed
+        bulletItem.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
     }
 }

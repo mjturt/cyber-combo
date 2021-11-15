@@ -91,6 +91,9 @@ public class SlotSystem : MonoBehaviour
 
                         pM.rocketBoots = false;
                         pM.iceBoots = true;
+
+                        pM.fireBullet = true;
+                        pM.iceBullet = false;
                         break;
                     case 0:
                         uImg1.enabled = false;
@@ -101,6 +104,9 @@ public class SlotSystem : MonoBehaviour
 
                         pM.rocketBoots = true;
                         pM.iceBoots = false;
+
+                        pM.fireBullet = false;
+                        pM.iceBullet = true;
                         break;
                 }
             }
