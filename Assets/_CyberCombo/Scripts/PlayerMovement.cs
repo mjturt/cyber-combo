@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             hasJumped = true;
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
 
         //Double jump toggle (for testing)

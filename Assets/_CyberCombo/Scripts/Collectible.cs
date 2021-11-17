@@ -38,6 +38,7 @@ public class Collectible : MonoBehaviour
                 print("Door unlocked!");
                 goalPortal.GetComponent<Animator>().SetBool("open", true);
                 unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
+                FindObjectOfType<AudioManager>().Play("GetKey");
 
             }
         }
