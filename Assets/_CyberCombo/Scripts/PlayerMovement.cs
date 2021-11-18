@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             hasJumped = true;
-            FindObjectOfType<AudioManager>().Play("Jump");
+            
         }
 
         //Double jump toggle (for testing)
@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         else if (hasJumped && doubleJump && rocketBoots)
         {
@@ -103,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
         else if (hasJumped)
         {

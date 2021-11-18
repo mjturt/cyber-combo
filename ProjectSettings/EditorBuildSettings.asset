@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_CyberCombo/Scenes/Level 7.unity
     guid: 316f3c94d866e6541b96ce9196c63112
+  - enabled: 1
+    path: Assets/_CyberCombo/Scenes/Level 8.unity
+    guid: 4e68a9c07ee6ce24b8659975bfe90945
   m_configObjects: {}

@@ -7,10 +7,13 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 initialLocation;
 
+    private PlayerMovement pM;
+
     // Start is called before the first frame update
     void Start()
     {
-        initialLocation = rb.position;    
+        initialLocation = rb.position; 
+        pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,9 +21,14 @@ public class Bullet : MonoBehaviour
         if (!collision.gameObject.name.Equals("Player"))
         { 
             Destroy(this.gameObject);
-            if(collision.gameObject.name.StartsWith("Enemy"))
+            if(collision.gameObject.CompareTag("Danger") && pM.fireBullet)
             {
                 Destroy(collision.gameObject);
+            }
+            else if (collision.gameObject.CompareTag("Danger") && pM.iceBullet)
+            {
+                collision.gameObject.GetComponent<Enemy>().enabled = false;
+                collision.gameObject.tag = "Untagged";
             }
         }
     }
