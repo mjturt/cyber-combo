@@ -12,6 +12,8 @@ TagManager:
   - Lava
   - Info
   - Gun
+  - Frozen
+  - Ice
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - UI
   - Ground
   - Behind Ground
-  - 
+  - Ice
   - 
   - 
   - 

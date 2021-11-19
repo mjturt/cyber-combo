@@ -14,6 +14,10 @@ public class Bullet : MonoBehaviour
     {
         initialLocation = rb.position; 
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
+        if (pM.iceBullet)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,8 +32,14 @@ public class Bullet : MonoBehaviour
             else if (collision.gameObject.CompareTag("Danger") && pM.iceBullet)
             {
                 collision.gameObject.GetComponent<Enemy>().enabled = false;
-                collision.gameObject.tag = "Untagged";
+                collision.gameObject.tag = "Frozen";
             }
+            else if (collision.gameObject.CompareTag("Frozen") && pM.fireBullet)
+            {
+                collision.GetComponent<Enemy>().enabled = true;
+                collision.gameObject.tag = "Danger";
+            }
+                
         }
     }
 

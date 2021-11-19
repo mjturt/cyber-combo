@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public float bulletSpeed;
 
     private Restart _restart;
+
+    private bool icy;
     
     
     void Start()
@@ -48,6 +50,16 @@ public class PlayerMovement : MonoBehaviour
         }
         
         horizontal = Input.GetAxis("Horizontal");
+        
+        if (icy)
+        {
+            rb.AddForce(new Vector2(horizontal * speed * 3, rb.velocity.y));
+        }
+        else
+        {
+            //Left-right movement
+            rb.velocity = new Vector2(horizontal * speed,rb.velocity.y); 
+        }
 
         /*Crouch Animation
         if (Input.GetButton("Crouch"))
@@ -86,8 +98,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Left-right movement
-        rb.velocity = new Vector2(horizontal * speed,rb.velocity.y);
+        
+
+        
         
         //Jump/doublejump physics
         if (hasJumped && isGrounded())
@@ -125,6 +138,18 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ice"))
+            icy = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ice"))
+            icy = false;
+    }
+
 
     private void Shoot()
     {

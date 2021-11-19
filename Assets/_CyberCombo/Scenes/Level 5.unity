@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 126500417}
   m_Layer: 6
   m_Name: IceTest (1)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 248800945}
   m_Layer: 6
   m_Name: IceTest2 (2)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 456131980}
   m_Layer: 6
   m_Name: IceTest2 (1)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 565902297}
   m_Layer: 6
   m_Name: IceTest (2)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 794075975}
   m_Layer: 6
   m_Name: IceTest2 (7)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7100,7 +7100,7 @@ GameObject:
   - component: {fileID: 1174505796}
   m_Layer: 6
   m_Name: IceTest2 (6)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7318,7 +7318,7 @@ GameObject:
   - component: {fileID: 1190403679}
   m_Layer: 6
   m_Name: IceTest2
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7492,7 +7492,7 @@ GameObject:
   - component: {fileID: 1232898870}
   m_Layer: 6
   m_Name: IceTest2 (4)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7781,7 +7781,7 @@ GameObject:
   - component: {fileID: 1523589769}
   m_Layer: 6
   m_Name: IceTest2 (5)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7999,7 +7999,7 @@ GameObject:
   - component: {fileID: 1697251445}
   m_Layer: 6
   m_Name: IceTest2 (3)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8565,7 +8565,7 @@ GameObject:
   - component: {fileID: 2099255383}
   m_Layer: 6
   m_Name: IceTest
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
