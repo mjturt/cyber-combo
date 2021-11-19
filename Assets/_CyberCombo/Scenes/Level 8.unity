@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 85971567}
   m_Layer: 6
   m_Name: IceTest (3)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 310764843}
   m_Layer: 6
   m_Name: IceTest (2)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 636043379}
   m_Layer: 6
   m_Name: IceTest
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8930,7 +8930,7 @@ GameObject:
   - component: {fileID: 1405171822}
   m_Layer: 6
   m_Name: IceTest (1)
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
