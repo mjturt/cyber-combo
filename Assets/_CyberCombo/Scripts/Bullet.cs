@@ -33,11 +33,13 @@ public class Bullet : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Enemy>().enabled = false;
                 collision.gameObject.tag = "Frozen";
+                collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
             }
             else if (collision.gameObject.CompareTag("Frozen") && pM.fireBullet)
             {
                 collision.GetComponent<Enemy>().enabled = true;
                 collision.gameObject.tag = "Danger";
+                collision.gameObject.GetComponent<Animator>().SetBool("frozen", false);
             }
                 
         }
