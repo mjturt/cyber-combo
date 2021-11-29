@@ -25,9 +25,9 @@ public class SlotSystem : MonoBehaviour
         uImg1 = imgs[2];
         uImg2 = imgs[3];
         uImg3 = imgs[4];
-        dImg1 = imgs[9];
-        dImg2 = imgs[10];
-        dImg3 = imgs[11];
+        dImg1 = imgs[8];
+        dImg2 = imgs[9];
+        dImg3 = imgs[10];
 
         //pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();

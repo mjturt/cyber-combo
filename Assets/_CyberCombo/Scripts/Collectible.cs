@@ -82,14 +82,18 @@ public class Collectible : MonoBehaviour
        {
            Destroy(other.gameObject);
            pMovement.Gun = true;
-           
-           slots.imgs[8].enabled = true;
-           slots.imgs[7].enabled = true;
-           slots.imgs[6].enabled = true;
-           slots.imgs[12].enabled = true;
-           slots.imgs[9].enabled = true;
 
-       }
+           slots.imgs[6].enabled = true; //left white bg
+           slots.imgs[7].enabled = true; //right white bg
+           slots.imgs[11].enabled = true;//line
+           slots.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<RawImage>().enabled = true; //gun
+           
+           if (slots.imgs[2].enabled == false)
+               slots.imgs[8].enabled = true; //ice power
+           else
+               slots.imgs[10].enabled = true; //fire power
+
+        }
        
        
    }
