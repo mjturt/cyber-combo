@@ -80,11 +80,11 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
-        //Double jump toggle (for testing)
+        /*//Double jump toggle (for testing)
         if (Input.GetKeyDown(KeyCode.Z))
         {
             rocketBoots = !rocketBoots;
-        }
+        }*/
 
         // Shooting
         if (Input.GetMouseButtonDown(0))
