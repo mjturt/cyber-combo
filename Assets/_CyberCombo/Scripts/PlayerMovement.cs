@@ -99,14 +99,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-
-        
-        
         //Jump/doublejump physics
-        if (hasJumped && isGrounded())
-        { 
+        if (isGrounded())
             doubleJump = true;
+
+        if (hasJumped && isGrounded())
+        {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
@@ -136,8 +134,11 @@ public class PlayerMovement : MonoBehaviour
     //Function to check if player is touching ground
     private bool isGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+        if (raycastHit.normal.y > 0 && raycastHit.transform.tag != "Danger")
+            return true;
+        else
+            return false;
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
