@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     public Rigidbody2D rb;
     private Vector3 initialLocation;
-
+    public Sprite iceSprite;
+    public Sprite fireSprite;
     private PlayerMovement pM;
 
     // Start is called before the first frame update
@@ -14,9 +15,10 @@ public class Bullet : MonoBehaviour
     {
         initialLocation = rb.position; 
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
+        iceSprite = pM.iceSprite;
         if (pM.iceBullet)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = iceSprite;
         }
     }
 
@@ -25,17 +27,17 @@ public class Bullet : MonoBehaviour
         if (!collision.gameObject.name.Equals("Player"))
         { 
             Destroy(this.gameObject);
-            if(collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().color != Color.cyan)
+            if(collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
             {
                 Destroy(collision.gameObject);
             }
-            else if (collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().color == Color.cyan)
+            else if (collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite == iceSprite)
             {
                 collision.gameObject.GetComponent<Enemy>().enabled = false;
                 collision.gameObject.tag = "Frozen";
                 collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
             }
-            else if (collision.gameObject.CompareTag("Frozen") && this.gameObject.GetComponent<SpriteRenderer>().color != Color.cyan)
+            else if (collision.gameObject.CompareTag("Frozen") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
             {
                 collision.GetComponent<Enemy>().enabled = true;
                 collision.gameObject.tag = "Danger";

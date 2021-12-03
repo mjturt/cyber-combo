@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool hasFired = false;
     public Rigidbody2D bullet;
+    public Sprite iceSprite;
     private Vector3 shootTargetPos;
     public float bulletSpeed;
 
