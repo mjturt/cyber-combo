@@ -33,4 +33,9 @@ public class LevelManager : MonoBehaviour
         pauseScreen.SetActive(!pauseScreen.activeSelf);
     }
 
+    public void DeleteSaves()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
 }
