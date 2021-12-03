@@ -25,17 +25,17 @@ public class Bullet : MonoBehaviour
         if (!collision.gameObject.name.Equals("Player"))
         { 
             Destroy(this.gameObject);
-            if(collision.gameObject.CompareTag("Danger") && pM.fireBullet)
+            if(collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().color != Color.cyan)
             {
                 Destroy(collision.gameObject);
             }
-            else if (collision.gameObject.CompareTag("Danger") && pM.iceBullet)
+            else if (collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().color == Color.cyan)
             {
                 collision.gameObject.GetComponent<Enemy>().enabled = false;
                 collision.gameObject.tag = "Frozen";
                 collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
             }
-            else if (collision.gameObject.CompareTag("Frozen") && pM.fireBullet)
+            else if (collision.gameObject.CompareTag("Frozen") && this.gameObject.GetComponent<SpriteRenderer>().color != Color.cyan)
             {
                 collision.GetComponent<Enemy>().enabled = true;
                 collision.gameObject.tag = "Danger";
