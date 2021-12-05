@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Enemy ( " +fromEnemy+ " ) shot at " + collision.gameObject.name);
+        //Debug.Log("Enemy ( " +fromEnemy+ " ) shot at " + collision.gameObject.name);
         if (fromEnemy) // Enemy can only harm players
         {            
             if (collision.gameObject.name.Equals("Player"))
@@ -57,15 +57,17 @@ public class Bullet : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite == iceSprite)
             {
-                collision.gameObject.GetComponent<Enemy>().enabled = false;
-                collision.gameObject.tag = "Frozen";
-                collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
+                //collision.gameObject.GetComponent<Enemy>().enabled = false;
+                collision.gameObject.GetComponent<Enemy>().Freeze();
+                //collision.gameObject.tag = "Frozen";
+                //collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
             }
             else if (collision.gameObject.CompareTag("Frozen") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
             {
-                collision.GetComponent<Enemy>().enabled = true;
-                collision.gameObject.tag = "Danger";
-                collision.gameObject.GetComponent<Animator>().SetBool("frozen", false);
+                //collision.GetComponent<Enemy>().enabled = true;
+                collision.gameObject.GetComponent<Enemy>().UnFreeze();
+                //collision.gameObject.tag = "Danger";
+                //collision.gameObject.GetComponent<Animator>().SetBool("frozen", false);
             }
                 
         }

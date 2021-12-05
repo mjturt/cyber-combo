@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour {
     public float rateOfFire = 5.0f; // how many seconds between shots 
     private float gunCoolDown = 0f;  // is it time to shoot yet?
 
+    public float freezeTimer = 10.0f; // Time spent frozen
+    private float timeToMelt = 0.0f;
+    public bool permaFrost = false; // is freezing permanent
+    private bool frozen = false;
+
     private SpriteRenderer sprite;
     
     //Walk Width defines how far enemy goes from left wall
@@ -29,26 +34,38 @@ public class Enemy : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
-        this.gunCoolDown = this.gunCoolDown - Time.deltaTime;
-        if (walkingDirection > 0.0f && transform.position.x >= wallRight) {
-            walkingDirection = -1.0f;
-            sprite.flipX = false;
-
-        } else if (walkingDirection < 0.0f && transform.position.x <= wallLeft)
+        if (!permaFrost && frozen && timeToMelt < 0)
         {
-            walkingDirection = 1.0f;
-            sprite.flipX = true;
+            UnFreeze();
         }
-        transform.Translate(walkAmount);
+        else if (!frozen)
+        { 
+            walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
+            
+            if (walkingDirection > 0.0f && transform.position.x >= wallRight) {
+                walkingDirection = -1.0f;
+                sprite.flipX = false;
 
-        //Debug.Log("gunCooldown: " + gunCoolDown);
-        if (canShoot && 0 > gunCoolDown)
-        {
-            Shoot();
-            this.gunCoolDown = rateOfFire;            
+            } else if (walkingDirection < 0.0f && transform.position.x <= wallLeft)
+            {
+                walkingDirection = 1.0f;
+                sprite.flipX = true;
+            }
+            transform.Translate(walkAmount);
+
+            this.gunCoolDown = this.gunCoolDown - Time.deltaTime;
+            //Debug.Log("gunCooldown: " + gunCoolDown);
+            if (canShoot && 0 > gunCoolDown)
+            {
+                Shoot();
+                this.gunCoolDown = rateOfFire;            
+            }
         }
-        
+        else
+        {
+            this.timeToMelt = this.timeToMelt - Time.deltaTime;
+        }
+
     }
 
     void Shoot()
@@ -59,5 +76,22 @@ public class Enemy : MonoBehaviour {
         bulletItem.rb.velocity = new Vector2(walkingDirection * bulletSpeed, 0);        
         bulletItem.setIsHostile(true);
         
+    }
+
+    public void Freeze()
+    {
+        this.gameObject.tag = "Frozen";
+        this.GetComponent<Animator>().SetBool("frozen", true);                
+        this.timeToMelt = freezeTimer;
+        this.gunCoolDown = rateOfFire;
+        this.frozen = true;
+    }
+
+    public void UnFreeze()
+    {
+        this.gameObject.tag = "Danger";
+        this.GetComponent<Animator>().SetBool("frozen", false);                
+        this.timeToMelt = 0.0f;
+        this.frozen = false;
     }
 }
