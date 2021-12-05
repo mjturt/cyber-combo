@@ -5,21 +5,21 @@ public class Enemy : MonoBehaviour {
     public float walkSpeed = 1.0f;      // Walkspeed
     private float wallLeft = 0.0f;       // Define wallLeft
     private float wallRight = 5.0f;      // Define wallRight
-    float walkingDirection = 1.0f;
+    protected float walkingDirection = 1.0f;
     Vector2 walkAmount;
 
     public bool canShoot = false;  // can the enemy shoot or not
     public Bullet bullet;
     public float bulletSpeed = 5.0f;
     public float rateOfFire = 5.0f; // how many seconds between shots 
-    private float gunCoolDown = 0f;  // is it time to shoot yet?
+    protected float gunCoolDown = 0f;  // is it time to shoot yet?
 
     public float freezeTimer = 10.0f; // Time spent frozen
-    private float timeToMelt = 0.0f;
+    protected float timeToMelt = 0.0f;
     public bool permaFrost = false; // is freezing permanent
-    private bool frozen = false;
+    protected bool frozen = false;
 
-    private SpriteRenderer sprite;
+    protected SpriteRenderer sprite;
     
     //Walk Width defines how far enemy goes from left wall
     public float walkWidth;
@@ -42,19 +42,18 @@ public class Enemy : MonoBehaviour {
         { 
             walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
             
-            if (walkingDirection > 0.0f && transform.position.x >= wallRight) {
+            if (walkingDirection > 0.0f && transform.position.x > wallRight) {
                 walkingDirection = -1.0f;
                 sprite.flipX = false;
 
-            } else if (walkingDirection < 0.0f && transform.position.x <= wallLeft)
+            } else if (walkingDirection < 0.0f && transform.position.x < wallLeft)
             {
                 walkingDirection = 1.0f;
                 sprite.flipX = true;
             }
             transform.Translate(walkAmount);
 
-            this.gunCoolDown = this.gunCoolDown - Time.deltaTime;
-            //Debug.Log("gunCooldown: " + gunCoolDown);
+            this.gunCoolDown = this.gunCoolDown - Time.deltaTime;            
             if (canShoot && 0 > gunCoolDown)
             {
                 Shoot();
@@ -68,7 +67,7 @@ public class Enemy : MonoBehaviour {
 
     }
 
-    void Shoot()
+    protected void Shoot()
     {
         Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
         

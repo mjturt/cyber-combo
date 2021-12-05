@@ -35,39 +35,41 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("Enemy ( " +fromEnemy+ " ) shot at " + collision.gameObject.name);
+        GameObject target = collision.gameObject;
+        
         if (fromEnemy) // Enemy can only harm players
         {            
-            if (collision.gameObject.name.Equals("Player"))
+            if (target.name.Equals("Player"))
             {
                 _restart.Death();
                 Destroy(this.gameObject);
             }
-            else if (!collision.gameObject.name.StartsWith("Enemy"))
+            else if (!target.name.StartsWith("Enemy"))
             {
                 Destroy(this.gameObject); // shoot through other mobs but not walls
             }
         }
-        else if (!collision.gameObject.name.Equals("Player"))
-        { 
+        else if (!target.name.Equals("Player")) // Players can't shoot themselves
+        {
+            Sprite currentSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
             Destroy(this.gameObject);
-            if(collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
+
+            if (target.CompareTag("Danger"))
             {
-                Destroy(collision.gameObject);
+                if (currentSprite == iceSprite)
+                {
+                    target.GetComponent<Enemy>().Freeze();                    
+                }                
+                else
+                {
+                    // Turrets are indestructable
+                    if (!target.name.Contains("Turret"))
+                        Destroy(target);                    
+                }
             }
-            else if (collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite == iceSprite)
+            else if (target.CompareTag("Frozen") && currentSprite != iceSprite)
             {
-                //collision.gameObject.GetComponent<Enemy>().enabled = false;
-                collision.gameObject.GetComponent<Enemy>().Freeze();
-                //collision.gameObject.tag = "Frozen";
-                //collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
-            }
-            else if (collision.gameObject.CompareTag("Frozen") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
-            {
-                //collision.GetComponent<Enemy>().enabled = true;
-                collision.gameObject.GetComponent<Enemy>().UnFreeze();
-                //collision.gameObject.tag = "Danger";
-                //collision.gameObject.GetComponent<Animator>().SetBool("frozen", false);
+                target.GetComponent<Enemy>().UnFreeze();
             }
                 
         }
@@ -85,7 +87,6 @@ public class Bullet : MonoBehaviour
     bool stillOnScreen()
     {        
         //Debug.Log("bullet distance to init: " + Vector3.Distance(rb.position, initialLocation));
-        //return (Vector3.Distance(rb.position, initialLocation) > 20.0f);        
-        return true;
+        return (Vector3.Distance(rb.position, initialLocation) < 30.0f);                       
     }
 }
