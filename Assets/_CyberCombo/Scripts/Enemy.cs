@@ -5,9 +5,21 @@ public class Enemy : MonoBehaviour {
     public float walkSpeed = 1.0f;      // Walkspeed
     private float wallLeft = 0.0f;       // Define wallLeft
     private float wallRight = 5.0f;      // Define wallRight
-    float walkingDirection = 1.0f;
+    protected float walkingDirection = 1.0f;
     Vector2 walkAmount;
-    private SpriteRenderer sprite;
+
+    public bool canShoot = false;  // can the enemy shoot or not
+    public Bullet bullet;
+    public float bulletSpeed = 5.0f;
+    public float rateOfFire = 5.0f; // how many seconds between shots 
+    protected float gunCoolDown = 0f;  // is it time to shoot yet?
+
+    public float freezeTimer = 10.0f; // Time spent frozen
+    protected float timeToMelt = 0.0f;
+    public bool permaFrost = false; // is freezing permanent
+    protected bool frozen = false;
+
+    protected SpriteRenderer sprite;
     
     //Walk Width defines how far enemy goes from left wall
     public float walkWidth;
@@ -17,20 +29,68 @@ public class Enemy : MonoBehaviour {
         wallLeft = transform.position.x;
         wallRight = transform.position.x + walkWidth;
         sprite = GetComponent<SpriteRenderer>();
+        gunCoolDown = rateOfFire;
     }
 
     // Update is called once per frame
     void Update () {
-        walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
-        if (walkingDirection > 0.0f && transform.position.x >= wallRight) {
-            walkingDirection = -1.0f;
-            sprite.flipX = false;
-
-        } else if (walkingDirection < 0.0f && transform.position.x <= wallLeft)
+        if (!permaFrost && frozen && timeToMelt < 0)
         {
-            walkingDirection = 1.0f;
-            sprite.flipX = true;
+            UnFreeze();
         }
-        transform.Translate(walkAmount);
+        else if (!frozen)
+        { 
+            walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
+            
+            if (walkingDirection > 0.0f && transform.position.x > wallRight) {
+                walkingDirection = -1.0f;
+                sprite.flipX = false;
+
+            } else if (walkingDirection < 0.0f && transform.position.x < wallLeft)
+            {
+                walkingDirection = 1.0f;
+                sprite.flipX = true;
+            }
+            transform.Translate(walkAmount);
+
+            this.gunCoolDown = this.gunCoolDown - Time.deltaTime;            
+            if (canShoot && 0 > gunCoolDown)
+            {
+                Shoot();
+                this.gunCoolDown = rateOfFire;            
+            }
+        }
+        else
+        {
+            this.timeToMelt = this.timeToMelt - Time.deltaTime;
+        }
+
+    }
+
+    protected void Shoot()
+    {
+        Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
+        
+        // Shoot towards the direction entity is facing
+        bulletItem.rb.velocity = new Vector2(walkingDirection * bulletSpeed, 0);        
+        bulletItem.setIsHostile(true);
+        
+    }
+
+    public void Freeze()
+    {
+        this.gameObject.tag = "Frozen";
+        this.GetComponent<Animator>().SetBool("frozen", true);                
+        this.timeToMelt = freezeTimer;
+        this.gunCoolDown = rateOfFire;
+        this.frozen = true;
+    }
+
+    public void UnFreeze()
+    {
+        this.gameObject.tag = "Danger";
+        this.GetComponent<Animator>().SetBool("frozen", false);                
+        this.timeToMelt = 0.0f;
+        this.frozen = false;
     }
 }

@@ -70,7 +70,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.003155008, y: 0}
   serializedVersion: 2
-  m_Radius: 0.11824621
+  m_Radius: 0.5
 --- !u!212 &139990524018634140
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -135,3 +135,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6712605495508155766}
+  iceSprite: {fileID: 0}
+  fireSprite: {fileID: 0}

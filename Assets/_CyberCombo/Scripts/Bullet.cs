@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour
     public Sprite fireSprite;
     private PlayerMovement pM;
 
+    private bool fromEnemy = false; // who's the shooter?
+
+    private Restart _restart;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,28 +24,52 @@ public class Bullet : MonoBehaviour
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = iceSprite;
         }
+
+        _restart = pM.GetComponent<Restart>(); // needed so player can be killed
+    }
+
+    public void setIsHostile(bool isHostile)
+    {
+        this.fromEnemy = isHostile;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.name.Equals("Player"))
-        { 
+        GameObject target = collision.gameObject;
+        
+        if (fromEnemy) // Enemy can only harm players
+        {            
+            if (target.name.Equals("Player"))
+            {
+                _restart.Death();
+                Destroy(this.gameObject);
+            }
+            else if (!target.name.StartsWith("Enemy"))
+            {
+                Destroy(this.gameObject); // shoot through other mobs but not walls
+            }
+        }
+        else if (!target.name.Equals("Player")) // Players can't shoot themselves
+        {
+            Sprite currentSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
             Destroy(this.gameObject);
-            if(collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
+
+            if (target.CompareTag("Danger"))
             {
-                Destroy(collision.gameObject);
+                if (currentSprite == iceSprite)
+                {
+                    target.GetComponent<Enemy>().Freeze();                    
+                }                
+                else
+                {
+                    // Turrets are indestructable
+                    if (!target.name.Contains("Turret"))
+                        Destroy(target);                    
+                }
             }
-            else if (collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite == iceSprite)
+            else if (target.CompareTag("Frozen") && currentSprite != iceSprite)
             {
-                collision.gameObject.GetComponent<Enemy>().enabled = false;
-                collision.gameObject.tag = "Frozen";
-                collision.gameObject.GetComponent<Animator>().SetBool("frozen", true);
-            }
-            else if (collision.gameObject.CompareTag("Frozen") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
-            {
-                collision.GetComponent<Enemy>().enabled = true;
-                collision.gameObject.tag = "Danger";
-                collision.gameObject.GetComponent<Animator>().SetBool("frozen", false);
+                target.GetComponent<Enemy>().UnFreeze();
             }
                 
         }
@@ -57,8 +85,8 @@ public class Bullet : MonoBehaviour
     }
 
     bool stillOnScreen()
-    {
-        return true;
-        //return (Vector3.Distance(rb.position, initialLocation) > 100);        
+    {        
+        //Debug.Log("bullet distance to init: " + Vector3.Distance(rb.position, initialLocation));
+        return (Vector3.Distance(rb.position, initialLocation) < 30.0f);                       
     }
 }
