@@ -19,5 +19,10 @@ public class MainMenuContinueButton : MonoBehaviour
     public void Activate()
     {
         SceneManager.LoadScene("Level " + highestLevel);
+        if (highestLevel == 9) {
+            FindObjectOfType<AudioManager>().ChangeSong("BossMusic");
+        } else {
+            FindObjectOfType<AudioManager>().ChangeSong("LevelMusic");
+        }
     }
 }
