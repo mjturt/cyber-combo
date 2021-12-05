@@ -8,8 +8,9 @@ public class Collectible : MonoBehaviour
 {
     private PlayerMovement pMovement;
     public GameObject _slotSystem;
-    private bool _locked = true;
+    public bool _locked = true;
     private bool _canPressButton;
+    public bool pressed = false;
     private Restart _restart;
     private SlotSystem slots;
 
@@ -34,11 +35,20 @@ public class Collectible : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                _locked = false;
-                print("Door unlocked!");
-                goalPortal.GetComponent<Animator>().SetBool("open", true);
-                unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
-                FindObjectOfType<AudioManager>().Play("GetKey");
+                if (GameObject.Find("ButtonBase"))
+                {
+                    pressed = true;
+                    unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
+                    FindObjectOfType<AudioManager>().Play("GetKey");
+                }
+                else
+                {
+                    _locked = false;
+                    print("Door unlocked!");
+                    goalPortal.GetComponent<Animator>().SetBool("open", true);
+                    unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
+                    FindObjectOfType<AudioManager>().Play("GetKey");
+                }
 
             }
         }
