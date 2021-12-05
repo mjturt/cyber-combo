@@ -165,4 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1
+  canShoot: 1
+  bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
+  bulletSpeed: 5
+  rateOfFire: 2
   walkWidth: 4

@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour
     public Sprite fireSprite;
     private PlayerMovement pM;
 
+    private bool fromEnemy = false; // who's the shooter?
+
+    private Restart _restart;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +24,31 @@ public class Bullet : MonoBehaviour
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = iceSprite;
         }
+
+        _restart = pM.GetComponent<Restart>(); // needed so player can be killed
+    }
+
+    public void setIsHostile(bool isHostile)
+    {
+        this.fromEnemy = isHostile;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.name.Equals("Player"))
+        Debug.Log("Enemy ( " +fromEnemy+ " ) shot at " + collision.gameObject.name);
+        if (fromEnemy) // Enemy can only harm players
+        {            
+            if (collision.gameObject.name.Equals("Player"))
+            {
+                _restart.Death();
+                Destroy(this.gameObject);
+            }
+            else if (!collision.gameObject.name.StartsWith("Enemy"))
+            {
+                Destroy(this.gameObject); // shoot through other mobs but not walls
+            }
+        }
+        else if (!collision.gameObject.name.Equals("Player"))
         { 
             Destroy(this.gameObject);
             if(collision.gameObject.CompareTag("Danger") && this.gameObject.GetComponent<SpriteRenderer>().sprite != iceSprite)
@@ -57,8 +81,9 @@ public class Bullet : MonoBehaviour
     }
 
     bool stillOnScreen()
-    {
+    {        
+        //Debug.Log("bullet distance to init: " + Vector3.Distance(rb.position, initialLocation));
+        //return (Vector3.Distance(rb.position, initialLocation) > 20.0f);        
         return true;
-        //return (Vector3.Distance(rb.position, initialLocation) > 100);        
     }
 }
