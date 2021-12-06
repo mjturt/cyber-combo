@@ -59,17 +59,21 @@ public class Bullet : MonoBehaviour
                 if (currentSprite == iceSprite)
                 {
                     target.GetComponent<Enemy>().Freeze();                    
+                    FindObjectOfType<AudioManager>().Play("Freeze");
                 }                
                 else
                 {
                     // Turrets are indestructable
-                    if (!target.name.Contains("Turret"))
+                    if (!target.name.Contains("Turret")) {
                         Destroy(target);                    
+                        FindObjectOfType<AudioManager>().Play("EnemyDeath");
+                    }
                 }
             }
             else if (target.CompareTag("Frozen") && currentSprite != iceSprite)
             {
                 target.GetComponent<Enemy>().UnFreeze();
+                FindObjectOfType<AudioManager>().Play("UnFreeze");
             }
                 
         }

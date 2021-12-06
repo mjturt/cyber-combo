@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (hasJumped && doubleJump && rocketBoots)
         {
+            FindObjectOfType<AudioManager>().Play("DoubleJump");
             doubleJump = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
@@ -159,5 +160,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("ShootVector: " + shootTargetPos);
         Rigidbody2D bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Rigidbody2D;        
         bulletItem.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
+        FindObjectOfType<AudioManager>().Play("Shoot");
     }
 }

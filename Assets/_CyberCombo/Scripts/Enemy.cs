@@ -69,6 +69,7 @@ public class Enemy : MonoBehaviour {
 
     protected void Shoot()
     {
+        FindObjectOfType<AudioManager>().Play("EnemyShoot");
         Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
         
         // Shoot towards the direction entity is facing
@@ -79,6 +80,7 @@ public class Enemy : MonoBehaviour {
 
     public void Freeze()
     {
+        FindObjectOfType<AudioManager>().Play("Freeze");
         this.gameObject.tag = "Frozen";
         this.GetComponent<Animator>().SetBool("frozen", true);                
         this.timeToMelt = freezeTimer;
@@ -88,6 +90,7 @@ public class Enemy : MonoBehaviour {
 
     public void UnFreeze()
     {
+        FindObjectOfType<AudioManager>().Play("UnFreeze");
         this.gameObject.tag = "Danger";
         this.GetComponent<Animator>().SetBool("frozen", false);                
         this.timeToMelt = 0.0f;

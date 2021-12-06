@@ -655,6 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 86059916}
   - component: {fileID: 86059917}
+  - component: {fileID: 86059918}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -731,22 +732,23 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.2
+  m_Value: 0.7
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1069604690}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: set_volume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &86059918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86059915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4e8c413a5ab2444a58f5762a9bf64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 86059917}
 --- !u!1 &88438671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,18 +1898,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Jump
-    clip: {fileID: 8300000, guid: 2e63cb6304f6ca94290e62878f1e1658, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GetKey
-    clip: {fileID: 8300000, guid: 1e792ab36e5366546b6349de345c6eff, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: MenuMusic
     clip: {fileID: 8300000, guid: 835a982b234f6f04c97f38c66fff4478, type: 3}
     volume: 0.6
@@ -1926,6 +1916,97 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 2e63cb6304f6ca94290e62878f1e1658, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetKey
+    clip: {fileID: 8300000, guid: 1e792ab36e5366546b6349de345c6eff, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: ac67a9f694965d44f8da0c5fc0a9473e, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDie
+    clip: {fileID: 8300000, guid: 532c6b8dc99110446ab5d42151f61701, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetPower
+    clip: {fileID: 8300000, guid: c475baed286d7164fa73bcbfd103e709, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 1b2d5ad2dfade7142a18b7ed8c4f4282, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyShoot
+    clip: {fileID: 8300000, guid: dbc3b199ec630c149a9c8ce0b2ab3857, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StartLevel
+    clip: {fileID: 8300000, guid: c149a108872698841a0c922a96b88d33, type: 3}
+    volume: 0.6
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Reset
+    clip: {fileID: 8300000, guid: dbc3b199ec630c149a9c8ce0b2ab3857, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: 9c8c629800a06a043bf626d753670a20, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Freeze
+    clip: {fileID: 8300000, guid: 2ea342c335ef6064da61391bcd86f1bb, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnFreeze
+    clip: {fileID: 8300000, guid: cb079b7035139b842973f13f2c87cf22, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetPower
+    clip: {fileID: 8300000, guid: c475baed286d7164fa73bcbfd103e709, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelComplete
+    clip: {fileID: 8300000, guid: 264b706b04cde9d4885c0f741f4e4c89, type: 3}
+    volume: 1
+    pitch: 0.4
+    loop: 0
+    source: {fileID: 0}
+  - name: DoubleJump
+    clip: {fileID: 8300000, guid: 29a38a97b15a030488f4f8b490b13918, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  masterVolume: 0.7
 --- !u!4 &302786782
 Transform:
   m_ObjectHideFlags: 0

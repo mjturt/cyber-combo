@@ -5,7 +5,7 @@ using System;
 public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
-
+    public float masterVolume = .7f;
     public static AudioManager instance;
 
     void Awake() {
@@ -21,9 +21,9 @@ public class AudioManager : MonoBehaviour {
         foreach (Sound s in sounds) {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-            s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.volume = masterVolume * s.volume;
         }
         Play("MenuMusic");
     }
@@ -38,5 +38,12 @@ public class AudioManager : MonoBehaviour {
             s.source.Stop();
         }
         Play(name);
+    }
+
+    public void SetMasterVolume (float vol) {
+        masterVolume = vol;
+        foreach (Sound s in sounds) {
+            s.source.volume = masterVolume * s.volume;
+        }
     }
 }
