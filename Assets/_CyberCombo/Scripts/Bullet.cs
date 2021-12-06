@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     private bool fromEnemy = false; // who's the shooter?
 
     private Restart _restart;
+    private AudioManager _audio;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class Bullet : MonoBehaviour
         }
 
         _restart = pM.GetComponent<Restart>(); // needed so player can be killed
+        _audio = FindObjectOfType<AudioManager>();
     }
 
     public void setIsHostile(bool isHostile)
@@ -53,27 +55,27 @@ public class Bullet : MonoBehaviour
         {
             Sprite currentSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
             Destroy(this.gameObject);
-
-            if (target.CompareTag("Danger"))
+            // handle enemies, except turrets which are invincible
+            if (target.CompareTag("Danger") && !target.name.Contains("Turret"))
             {
                 if (currentSprite == iceSprite)
                 {
-                    target.GetComponent<Enemy>().Freeze();                    
-                    FindObjectOfType<AudioManager>().Play("Freeze");
+                    target.GetComponent<Enemy>().Freeze();
+                    if (null != _audio) _audio.Play("Freeze");
+                    //FindObjectOfType<AudioManager>().Play("Freeze");
                 }                
                 else
-                {
-                    // Turrets are indestructable
-                    if (!target.name.Contains("Turret")) {
-                        Destroy(target);                    
-                        FindObjectOfType<AudioManager>().Play("EnemyDeath");
-                    }
+                {                    
+                    Destroy(target);
+                    if (null != _audio) _audio.Play("EnemyDeath");
+                    //FindObjectOfType<AudioManager>().Play("EnemyDeath");                 
                 }
             }
             else if (target.CompareTag("Frozen") && currentSprite != iceSprite)
             {
                 target.GetComponent<Enemy>().UnFreeze();
-                FindObjectOfType<AudioManager>().Play("UnFreeze");
+                if (null != _audio) _audio.Play("UnFreeze");
+                //FindObjectOfType<AudioManager>().Play("UnFreeze");
             }
                 
         }

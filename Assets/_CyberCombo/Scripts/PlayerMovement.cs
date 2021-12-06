@@ -24,12 +24,13 @@ public class PlayerMovement : MonoBehaviour
     public bool Gun = false;
 
     private bool hasFired = false;
-    public Rigidbody2D bullet;
+    public Bullet bullet;
     public Sprite iceSprite;
     private Vector3 shootTargetPos;
     public float bulletSpeed;
 
     private Restart _restart;
+    private AudioManager _audio;
 
     private bool icy;
     
@@ -37,8 +38,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        bc = GetComponent<BoxCollider2D>();        
         _restart = GetComponent<Restart>();
+        _audio = FindObjectOfType<AudioManager>();
     }
     
     void Update()
@@ -108,16 +110,19 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
-            FindObjectOfType<AudioManager>().Play("Jump");
+            if (null != _audio) _audio.Play("Jump");
+            //FindObjectOfType<AudioManager>().Play("Jump");
         }
         else if (hasJumped && doubleJump && rocketBoots)
         {
-            FindObjectOfType<AudioManager>().Play("DoubleJump");
+            if (null != _audio) _audio.Play("DoubleJump");
+            //FindObjectOfType<AudioManager>().Play("DoubleJump");
             doubleJump = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
-            FindObjectOfType<AudioManager>().Play("Jump");
+            if (null != _audio) _audio.Play("Jump");
+            //FindObjectOfType<AudioManager>().Play("Jump");
         }
         else if (hasJumped)
         {
@@ -126,9 +131,9 @@ public class PlayerMovement : MonoBehaviour
 
         // Shooting
         if (hasFired && Gun)
-        {
-            Shoot();
+        {            
             hasFired = false;
+            Shoot();
         }
     }
 
@@ -158,8 +163,9 @@ public class PlayerMovement : MonoBehaviour
     {
         shootTargetPos.Normalize();
         Debug.Log("ShootVector: " + shootTargetPos);
-        Rigidbody2D bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Rigidbody2D;        
-        bulletItem.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
-        FindObjectOfType<AudioManager>().Play("Shoot");
+        Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;        
+        bulletItem.rb.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
+        if (null != _audio) _audio.Play("Shoot");
+        //FindObjectOfType<AudioManager>().Play("Shoot");
     }
 }
