@@ -732,7 +732,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.7
+  m_Value: 0.75
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1900,104 +1900,26 @@ MonoBehaviour:
   sounds:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: 835a982b234f6f04c97f38c66fff4478, type: 3}
-    volume: 0.6
+    volume: 0.5
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: LevelMusic
     clip: {fileID: 8300000, guid: dcafd0ca63e85d249bb08339f8a61e79, type: 3}
-    volume: 0.6
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: BossMusic
     clip: {fileID: 8300000, guid: 4a652d976280ff947b60a625a4dda9b7, type: 3}
-    volume: 0.6
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Jump
-    clip: {fileID: 8300000, guid: 2e63cb6304f6ca94290e62878f1e1658, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GetKey
-    clip: {fileID: 8300000, guid: 1e792ab36e5366546b6349de345c6eff, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Death
-    clip: {fileID: 8300000, guid: ac67a9f694965d44f8da0c5fc0a9473e, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: EnemyDie
-    clip: {fileID: 8300000, guid: 532c6b8dc99110446ab5d42151f61701, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GetPower
-    clip: {fileID: 8300000, guid: c475baed286d7164fa73bcbfd103e709, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Shoot
-    clip: {fileID: 8300000, guid: 1b2d5ad2dfade7142a18b7ed8c4f4282, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: EnemyShoot
-    clip: {fileID: 8300000, guid: dbc3b199ec630c149a9c8ce0b2ab3857, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: StartLevel
-    clip: {fileID: 8300000, guid: c149a108872698841a0c922a96b88d33, type: 3}
-    volume: 0.6
-    pitch: 1.5
-    loop: 0
-    source: {fileID: 0}
-  - name: Reset
-    clip: {fileID: 8300000, guid: dbc3b199ec630c149a9c8ce0b2ab3857, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Walk
-    clip: {fileID: 8300000, guid: 9c8c629800a06a043bf626d753670a20, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Freeze
-    clip: {fileID: 8300000, guid: 2ea342c335ef6064da61391bcd86f1bb, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: UnFreeze
-    clip: {fileID: 8300000, guid: cb079b7035139b842973f13f2c87cf22, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: GetPower
-    clip: {fileID: 8300000, guid: c475baed286d7164fa73bcbfd103e709, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: LevelComplete
-    clip: {fileID: 8300000, guid: 264b706b04cde9d4885c0f741f4e4c89, type: 3}
-    volume: 1
-    pitch: 0.4
+    clip: {fileID: 8300000, guid: efa7af940523ecc4290a214a3ba39056, type: 3}
+    volume: 0.3
+    pitch: 0.8
     loop: 0
     source: {fileID: 0}
   - name: DoubleJump
@@ -2006,7 +1928,115 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  masterVolume: 0.7
+  - name: Hit
+    clip: {fileID: 8300000, guid: 0e2b43e5f34ac014e81132d23ddf5695, type: 3}
+    volume: 0.4
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Walk
+    clip: {fileID: 8300000, guid: b3ea9f9e067c5114e9e59c50e1559dfc, type: 3}
+    volume: 0.3
+    pitch: 1.2
+    loop: 1
+    source: {fileID: 0}
+  - name: ShootFire
+    clip: {fileID: 8300000, guid: 952c6a1ba52339e49a0b414b1faa1ca5, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: ShootIce
+    clip: {fileID: 8300000, guid: c5ffe91ea7558ee4bb6a61e103212472, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: c4b263868c67aec428d03f369cb22872, type: 3}
+    volume: 0.5
+    pitch: 1.2
+    loop: 0
+    source: {fileID: 0}
+  - name: GetKey
+    clip: {fileID: 8300000, guid: 1e792ab36e5366546b6349de345c6eff, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDeath
+    clip: {fileID: 8300000, guid: 558e7c79f52b8d04dbd92950929a11a3, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyShoot
+    clip: {fileID: 8300000, guid: 9222e95de3b4a3c4bb62e9b489e0d1c1, type: 3}
+    volume: 0.6
+    pitch: 1.4
+    loop: 0
+    source: {fileID: 0}
+  - name: Freeze
+    clip: {fileID: 8300000, guid: c28e8888295cf57459cf65d656b68c0d, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UnFreeze
+    clip: {fileID: 8300000, guid: fa5d6598d8dabd14c889d3b020d9f50f, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StartLevel
+    clip: {fileID: 8300000, guid: 061585eac869397409d3b698297be862, type: 3}
+    volume: 0.05
+    pitch: 3
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelComplete
+    clip: {fileID: 8300000, guid: a98045a36b230a2468a94fc58e48c990, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Reset
+    clip: {fileID: 8300000, guid: decedc4e19e940a47ae28410135add8f, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetFire
+    clip: {fileID: 8300000, guid: f6dd17606c244bc469aa856b046b0c8b, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GetIce
+    clip: {fileID: 8300000, guid: 25d379248272e1b42b4d848becd30d22, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Info
+    clip: {fileID: 8300000, guid: 65b1df8077ef09d4689200ac72e645cb, type: 3}
+    volume: 0.1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: GetGun
+    clip: {fileID: 8300000, guid: 0e412b21b2394a2479afd421bdcfc3c6, type: 3}
+    volume: 0.7
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: ChangeItem
+    clip: {fileID: 8300000, guid: 6e298fb31cf6a754488b50ca6eb72d2a, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  masterVolume: 0.75
 --- !u!4 &302786782
 Transform:
   m_ObjectHideFlags: 0

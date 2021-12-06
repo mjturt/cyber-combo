@@ -5,7 +5,7 @@ using System;
 public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
-    public float masterVolume = .7f;
+    public float masterVolume = .75f;
     public static AudioManager instance;
 
     void Awake() {
@@ -31,6 +31,11 @@ public class AudioManager : MonoBehaviour {
     public void Play (string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
+    }
+
+    public AudioSource GetSource (string name) {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        return s.source;
     }
 
     public void ChangeSong (string name) {

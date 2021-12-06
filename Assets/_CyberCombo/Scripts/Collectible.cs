@@ -60,12 +60,14 @@ public class Collectible : MonoBehaviour
        if(other.gameObject.CompareTag("FireElement"))
        {
            Destroy(other.gameObject);
+           FindObjectOfType<AudioManager>().Play("GetFire");
            pMovement.Fire = true;
            _slotSystem.SetActive(true);
            pMovement.rocketBoots = true;
        }
        else if (other.gameObject.CompareTag("IceElement"))
        {
+           FindObjectOfType<AudioManager>().Play("GetIce");
            Destroy(other.gameObject);
            pMovement.Ice = true;
        }
@@ -80,16 +82,19 @@ public class Collectible : MonoBehaviour
        //On key trigger area logic
        else if(other.gameObject.CompareTag("Key"))
        {
+           FindObjectOfType<AudioManager>().Play("Info");
            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
            _canPressButton = true;
        }
        //Pop info text
        else if (other.gameObject.CompareTag("Info"))
        {
+           FindObjectOfType<AudioManager>().Play("Info");
            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
        }
        else if (other.gameObject.CompareTag("Gun"))
        {
+           FindObjectOfType<AudioManager>().Play("GetGun");
            Destroy(other.gameObject);
            pMovement.Gun = true;
 

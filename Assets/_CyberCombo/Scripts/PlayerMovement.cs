@@ -32,13 +32,15 @@ public class PlayerMovement : MonoBehaviour
     private Restart _restart;
 
     private bool icy;
-    
+
+    private AudioSource walkingSource;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         _restart = GetComponent<Restart>();
+        walkingSource = FindObjectOfType<AudioManager>().GetSource("Walk");
     }
     
     void Update()
@@ -112,12 +114,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (hasJumped && doubleJump && rocketBoots)
         {
-            FindObjectOfType<AudioManager>().Play("DoubleJump");
             doubleJump = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
-            FindObjectOfType<AudioManager>().Play("Jump");
+            FindObjectOfType<AudioManager>().Play("DoubleJump");
         }
         else if (hasJumped)
         {
@@ -130,6 +131,12 @@ public class PlayerMovement : MonoBehaviour
             Shoot();
             hasFired = false;
         }
+
+        // Walking sound
+        if (isWalking() && !walkingSource.isPlaying) {
+            walkingSource.Play();
+        }
+        if (!isWalking()) walkingSource.Stop();
     }
 
     //Function to check if player is touching ground
@@ -141,10 +148,32 @@ public class PlayerMovement : MonoBehaviour
         else
             return false;
     }
+
+    // Function to check if player is walking (for walking sounds)
+    private bool isWalking() {
+        if (Input.GetAxis("Horizontal") != 0 && isGrounded() && rb.velocity.magnitude > .2) return true;
+        return false;
+    }
+
+    // Function to check if player is walking left (for walking animation)
+    private bool isWalkingLeft() {
+        if (0 > Input.GetAxis("Horizontal") && rb.velocity.magnitude > .2) return true;
+        return false;
+    }
+
+    // Function to check if player is walking left (for walking animation)
+    private bool isWalkingRight() {
+        if (0 > Input.GetAxis("Horizontal") && rb.velocity.magnitude > .2) return true;
+        return false;
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ice"))
             icy = true;
+
+        if (other.relativeVelocity.magnitude > 4)
+            FindObjectOfType<AudioManager>().Play("Hit");
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -160,6 +189,13 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("ShootVector: " + shootTargetPos);
         Rigidbody2D bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Rigidbody2D;        
         bulletItem.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
-        FindObjectOfType<AudioManager>().Play("Shoot");
+        Sprite currentSprite = bulletItem.GetComponent<SpriteRenderer>().sprite;
+        if (fireBullet) {
+            FindObjectOfType<AudioManager>().Play("ShootFire");
+        } else if (iceBullet) {
+            FindObjectOfType<AudioManager>().Play("ShootIce");
+        } else {
+            FindObjectOfType<AudioManager>().Play("ShootFire");
+        }
     }
 }
