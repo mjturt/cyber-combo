@@ -12,9 +12,9 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: IGTD Group 6
   productName: Cyber Combo
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 15af09f8ab8022c488ae0f3f2107dd26, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -310,6 +310,13 @@ PlayerSettings:
       m_Icon: {fileID: 2800000, guid: 9bf6a8d963f89194fae8007f73a6e8e3, type: 3}
       m_Width: 16
       m_Height: 16
+      m_Kind: 0
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 9bf6a8d963f89194fae8007f73a6e8e3, type: 3}
+      m_Width: 128
+      m_Height: 128
       m_Kind: 0
   m_BuildTargetPlatformIcons: []
   m_BuildTargetBatching: []
