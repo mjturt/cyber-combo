@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 306339102}
   - component: {fileID: 1745986775}
   - component: {fileID: 1486254774}
+  - component: {fileID: 251046391206343916}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -77,9 +78,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 728355495ab0f4f40ae6a323b60dc464, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 514217d29a38d5c418367b36f469fda6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 2}
@@ -154,12 +155,16 @@ MonoBehaviour:
     m_Bits: 64
   rocketBoots: 1
   iceBoots: 0
+  fireBullet: 0
+  iceBullet: 0
   Fire: 1
   Magnet: 0
   Ice: 1
   Gun: 1
-  bullet: {fileID: 6712605495508155766, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
+  bullet: {fileID: 0}
+  iceSprite: {fileID: 0}
   bulletSpeed: 5
+  animator: {fileID: 251046391206343916}
 --- !u!114 &306339102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotSystem: {fileID: 0}
+  _locked: 1
+  pressed: 0
   goalPortal: {fileID: 0}
   unlockButton: {fileID: 0}
   gameManager: {fileID: 0}
@@ -208,3 +215,22 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!95 &251046391206343916
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462536997848490294}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a18fe0f65f9a56847be2eab6db2a75a4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

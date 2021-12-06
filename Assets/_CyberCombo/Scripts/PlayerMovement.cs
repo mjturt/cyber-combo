@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private bool icy;
 
     private AudioSource walkingSource;
+    public Animator animator;
     
     void Start()
     {
@@ -141,6 +142,10 @@ public class PlayerMovement : MonoBehaviour
             }
             if (!isWalking()) walkingSource.Stop();
         }
+
+        // Player animations
+        animator.SetFloat("Speed", Input.GetAxisRaw("Horizontal"));
+        animator.SetBool("isGrounded", isGrounded());
     }
 
     //Function to check if player is touching ground
@@ -160,13 +165,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Function to check if player is walking left (for walking animation)
-    private bool isWalkingLeft() {
-        if (0 > Input.GetAxis("Horizontal") && rb.velocity.magnitude > .2) return true;
+    private bool isMovingLeft() {
+        if (0 < Input.GetAxis("Horizontal") && rb.velocity.magnitude > .2) return true;
         return false;
     }
 
     // Function to check if player is walking left (for walking animation)
-    private bool isWalkingRight() {
+    private bool isMovingRight() {
         if (0 > Input.GetAxis("Horizontal") && rb.velocity.magnitude > .2) return true;
         return false;
     }
