@@ -24,5 +24,6 @@ public class MainMenuContinueButton : MonoBehaviour
         } else {
             FindObjectOfType<AudioManager>().ChangeSong("LevelMusic");
         }
+        FindObjectOfType<AudioManager>().Play("StartLevel");
     }
 }

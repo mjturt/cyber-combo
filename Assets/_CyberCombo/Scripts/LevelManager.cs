@@ -25,8 +25,8 @@ public class LevelManager : MonoBehaviour
             FindObjectOfType<AudioManager>().ChangeSong("BossMusic");
         } else {
             FindObjectOfType<AudioManager>().ChangeSong("LevelMusic");
-
         }
+        FindObjectOfType<AudioManager>().Play("StartLevel");
     }
 
     public void MenuScene()

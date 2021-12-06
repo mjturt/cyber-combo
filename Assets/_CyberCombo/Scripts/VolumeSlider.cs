@@ -8,6 +8,7 @@ public class VolumeSlider : MonoBehaviour {
     void changeVolume(float vol) {
         FindObjectOfType<AudioManager>().SetMasterVolume(vol);
     }
+
     void OnEnable() {
         volumeSlider.onValueChanged.AddListener(delegate { changeVolume(volumeSlider.value); });
     }

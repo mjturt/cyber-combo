@@ -10,8 +10,7 @@ public class LevelDisabler : MonoBehaviour
     void Start()
     {
         Button[] buttons = this.gameObject.GetComponentsInChildren<Button>();
-        // int highestLevel = PlayerPrefs.GetInt("HighestLevel"); // 0 if no saved progress
-        int highestLevel = 9;
+        int highestLevel = PlayerPrefs.GetInt("HighestLevel"); // 0 if no saved progress
         
         // Disable levels for the end until a level that has been reached is encountered
         for (int i = buttons.Length - 2; i >= highestLevel; i--) // -1 for the back button
