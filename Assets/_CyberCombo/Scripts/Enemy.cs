@@ -24,12 +24,15 @@ public class Enemy : MonoBehaviour {
     //Walk Width defines how far enemy goes from left wall
     public float walkWidth;
 
+    private AudioManager _audio;
+
 
     void Start () {
         wallLeft = transform.position.x;
         wallRight = transform.position.x + walkWidth;
         sprite = GetComponent<SpriteRenderer>();
         gunCoolDown = rateOfFire;
+        _audio = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -69,7 +72,7 @@ public class Enemy : MonoBehaviour {
 
     protected void Shoot()
     {
-        FindObjectOfType<AudioManager>().Play("EnemyShoot");
+        if (null != _audio) _audio.Play("EnemyShoot");
         Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
         
         // Shoot towards the direction entity is facing
@@ -80,7 +83,7 @@ public class Enemy : MonoBehaviour {
 
     public void Freeze()
     {
-        FindObjectOfType<AudioManager>().Play("Freeze");
+        if (null != _audio) _audio.Play("Freeze");
         this.gameObject.tag = "Frozen";
         this.GetComponent<Animator>().SetBool("frozen", true);                
         this.timeToMelt = freezeTimer;
@@ -90,7 +93,7 @@ public class Enemy : MonoBehaviour {
 
     public void UnFreeze()
     {
-        FindObjectOfType<AudioManager>().Play("UnFreeze");
+        if (null != _audio) _audio.Play("UnFreeze");
         this.gameObject.tag = "Danger";
         this.GetComponent<Animator>().SetBool("frozen", false);                
         this.timeToMelt = 0.0f;

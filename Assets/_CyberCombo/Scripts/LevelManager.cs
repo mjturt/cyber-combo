@@ -21,18 +21,20 @@ public class LevelManager : MonoBehaviour
     public void ChangeLevel(int level)
     {
         SceneManager.LoadScene("Level " + level);
+        AudioManager _audio = FindObjectOfType<AudioManager>();
         if (level == 9) {
-            FindObjectOfType<AudioManager>().ChangeSong("BossMusic");
+            if (null != _audio) _audio.ChangeSong("BossMusic");
         } else {
-            FindObjectOfType<AudioManager>().ChangeSong("LevelMusic");
+            if (null != _audio) _audio.ChangeSong("LevelMusic");
         }
-        FindObjectOfType<AudioManager>().Play("StartLevel");
+        if (null != _audio) _audio.Play("StartLevel");
     }
 
     public void MenuScene()
     {
+        AudioManager _audio = FindObjectOfType<AudioManager>();
         SceneManager.LoadScene("Main menu");
-        FindObjectOfType<AudioManager>().ChangeSong("MenuMusic");
+        if (null != _audio) _audio.ChangeSong("MenuMusic");
     }
 
     public void ResumeLevel()

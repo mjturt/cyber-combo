@@ -12,7 +12,8 @@ public class LevelComplete : MonoBehaviour
     {
         completionScreen.SetActive(true);
 
-        FindObjectOfType<AudioManager>().Play("LevelComplete");
+        AudioManager _audio = FindObjectOfType<AudioManager>();
+        if (null != _audio) _audio.Play("LevelComplete");
         // Save progress if necessary
         int highestLevel = PlayerPrefs.GetInt("HighestLevel");
         string scene = SceneManager.GetActiveScene().name;

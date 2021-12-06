@@ -18,6 +18,8 @@ public class SlotSystem : MonoBehaviour
 
     private int uClickCount;
     private int dClickCount = 1;
+
+    private AudioManager _audio;
     
     void Start()
     {
@@ -32,6 +34,7 @@ public class SlotSystem : MonoBehaviour
         //pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
 
+        _audio = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -47,7 +50,7 @@ public class SlotSystem : MonoBehaviour
 
             if (pM.Fire && pM.Ice && pM.Magnet)
             {
-                FindObjectOfType<AudioManager>().Play("ChangeItem");
+                if (_audio != null) _audio.Play("ChangeItem");
                 //Skip element if its already assigned to other slot
                 if (uClickCount % 3 == dClickCount % 3)
                 {
@@ -81,7 +84,7 @@ public class SlotSystem : MonoBehaviour
             
             else if (pM.Gun)
             {
-                FindObjectOfType<AudioManager>().Play("ChangeItem");
+                if (_audio != null) _audio.Play("ChangeItem");
                 switch (uClickCount % 2)
                 {
                     case 1:
@@ -115,7 +118,7 @@ public class SlotSystem : MonoBehaviour
             
             else if (pM.Fire && pM.Ice)
             {
-                FindObjectOfType<AudioManager>().Play("ChangeItem");
+                if (_audio != null) _audio.Play("ChangeItem");
 
                 switch (uClickCount % 2)
                 {
@@ -149,7 +152,7 @@ public class SlotSystem : MonoBehaviour
                     dClickCount++;
                 }
 
-                FindObjectOfType<AudioManager>().Play("ChangeItem");
+                if (_audio != null) _audio.Play("ChangeItem");
                 switch (dClickCount % 3)
                 {
                     case 0:

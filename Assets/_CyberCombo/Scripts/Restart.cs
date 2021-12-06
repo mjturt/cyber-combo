@@ -11,12 +11,14 @@ public class Restart : MonoBehaviour
     {
         print("Die animation...");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        FindObjectOfType<AudioManager>().Play("Death");
+        AudioManager _audio = FindObjectOfType<AudioManager>();
+        if (null != _audio) _audio.Play("Death");
     }
 
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        FindObjectOfType<AudioManager>().Play("Reset");
+        AudioManager _audio = FindObjectOfType<AudioManager>();
+        if (null != _audio) _audio.Play("Reset");
     }
 }

@@ -62,20 +62,17 @@ public class Bullet : MonoBehaviour
                 {
                     target.GetComponent<Enemy>().Freeze();
                     if (null != _audio) _audio.Play("Freeze");
-                    //FindObjectOfType<AudioManager>().Play("Freeze");
                 }                
                 else
                 {                    
                     Destroy(target);
                     if (null != _audio) _audio.Play("EnemyDeath");
-                    //FindObjectOfType<AudioManager>().Play("EnemyDeath");                 
                 }
             }
             else if (target.CompareTag("Frozen") && currentSprite != iceSprite)
             {
                 target.GetComponent<Enemy>().UnFreeze();
                 if (null != _audio) _audio.Play("UnFreeze");
-                //FindObjectOfType<AudioManager>().Play("UnFreeze");
             }
                 
         }

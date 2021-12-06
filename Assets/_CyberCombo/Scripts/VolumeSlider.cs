@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class VolumeSlider : MonoBehaviour {
     public Slider volumeSlider;
     void changeVolume(float vol) {
-        FindObjectOfType<AudioManager>().SetMasterVolume(vol);
+        AudioManager _audio = FindObjectOfType<AudioManager>();
+        if (null != _audio) _audio.SetMasterVolume(vol);
     }
 
     void OnEnable() {
