@@ -161,7 +161,7 @@ MonoBehaviour:
   Magnet: 0
   Ice: 1
   Gun: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
   iceSprite: {fileID: 0}
   bulletSpeed: 5
   animator: {fileID: 251046391206343916}
