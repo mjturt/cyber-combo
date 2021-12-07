@@ -104,7 +104,7 @@ Rigidbody2D:
   m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &7705286969294146045
@@ -169,4 +169,6 @@ MonoBehaviour:
   bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
   bulletSpeed: 5
   rateOfFire: 2
+  freezeTimer: 10
+  permaFrost: 0
   walkWidth: 4

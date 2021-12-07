@@ -4,35 +4,42 @@ using UnityEngine;
 
 public class ButtonBase : MonoBehaviour
 {
-    public GameObject goalPortal;
+    private GameObject goalPortal;
     Animator animator;
     private Collectible collect;
+    private int timer;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         collect = GameObject.Find("Player").GetComponent<Collectible>();
+        goalPortal = GameObject.Find("GoalPortal");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        animator.SetBool("hasWeight", true);
-        
-        if (collect.pressed)
-        {
-            goalPortal.GetComponent<Animator>().SetBool("open", true);
-            collect._locked = false;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        animator.SetBool("hasWeight", false);
-        
-        if (collect.pressed)
+        if (timer > 0)
+            timer--;
+        else if (collect._locked == false)
         {
             goalPortal.GetComponent<Animator>().SetBool("open", false);
             collect._locked = true;
+            animator.SetBool("hasWeight", false);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (animator.GetBool("hasWeight") == false)
+        {
+            animator.SetBool("hasWeight", true);
+            if (collect.pressed)
+            {
+                goalPortal.GetComponent<Animator>().SetBool("open", true);
+                collect._locked = false;
+            }
+        }
+        
+        timer = 10;
     }
 }
