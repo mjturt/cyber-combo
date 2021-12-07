@@ -1,0 +1,11 @@
+Group 6
+
+Active members:
+Tuomas Lundén
+Jonna Judin
+Riku Helle
+Matias Mäkipelto
+Maks Turtiainen
+Milla Oksanen
+
+To run the game, run the .exe file
