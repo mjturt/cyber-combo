@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2953110968676351978, guid: d907a74ac50cdc34586f70ef2d581ad2, type: 3}
       propertyPath: m_Name
-      value: Turret
+      value: EnemyTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2953110968676351991, guid: d907a74ac50cdc34586f70ef2d581ad2, type: 3}
       propertyPath: m_RootOrder
@@ -282,7 +282,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2953110968676351978, guid: d907a74ac50cdc34586f70ef2d581ad2, type: 3}
       propertyPath: m_Name
-      value: Turret (1)
+      value: EnemyTurret (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2953110968676351991, guid: d907a74ac50cdc34586f70ef2d581ad2, type: 3}
       propertyPath: m_RootOrder
