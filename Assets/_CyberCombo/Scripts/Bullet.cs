@@ -6,8 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public Rigidbody2D rb;
     private Vector3 initialLocation;
-    public Sprite iceSprite;
-    public Sprite fireSprite;    
+    public Sprite iceSprite;    
     private PlayerMovement pM;
 
     private Restart _restart;
