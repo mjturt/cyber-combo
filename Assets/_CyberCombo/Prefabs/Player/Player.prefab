@@ -163,7 +163,7 @@ MonoBehaviour:
   Gun: 1
   bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
   iceSprite: {fileID: 0}
-  bulletSpeed: 5
+  bulletSpeed: 7
   animator: {fileID: 251046391206343916}
 --- !u!114 &306339102
 MonoBehaviour:

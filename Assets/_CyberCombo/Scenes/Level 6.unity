@@ -248,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2571591274608711559, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2571591275074382965, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8327,10 +8331,6 @@ PrefabInstance:
       propertyPath: iceSprite
       value: 
       objectReference: {fileID: 21300000, guid: 7187923c211855f42ad6ee275b8ebfb0, type: 3}
-    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-      propertyPath: bulletSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: rocketBoots
       value: 1
