@@ -8,9 +8,8 @@ public class Bullet : MonoBehaviour
     private Vector3 initialLocation;
     public Sprite iceSprite;
     public Sprite fireSprite;
+    
     private PlayerMovement pM;
-
-    private bool fromEnemy = false; // who's the shooter?
 
     private Restart _restart;
     private AudioManager _audio;
@@ -21,6 +20,7 @@ public class Bullet : MonoBehaviour
         initialLocation = rb.position; 
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         iceSprite = pM.iceSprite;
+        fireSprite = pM.fireSprite;
         if (pM.iceBullet)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = iceSprite;
@@ -30,28 +30,11 @@ public class Bullet : MonoBehaviour
         _audio = FindObjectOfType<AudioManager>();
     }
 
-    public void setIsHostile(bool isHostile)
-    {
-        this.fromEnemy = isHostile;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject target = collision.gameObject;
-        
-        if (fromEnemy) // Enemy can only harm players
-        {            
-            if (target.name.Equals("Player"))
-            {
-                _restart.Death();
-                Destroy(this.gameObject);
-            }
-            else if (!target.name.StartsWith("Enemy"))
-            {
-                Destroy(this.gameObject); // shoot through other mobs but not walls
-            }
-        }
-        else if (!target.name.Equals("Player")) // Players can't shoot themselves
+        // Players can't shoot themselves nor enemy bullets
+        if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet")) 
         {
             Sprite currentSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
             Destroy(this.gameObject);
@@ -73,8 +56,7 @@ public class Bullet : MonoBehaviour
             {
                 target.GetComponent<Enemy>().UnFreeze();
                 if (null != _audio) _audio.Play("UnFreeze");
-            }
-                
+            }        
         }
     }
 

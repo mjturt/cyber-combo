@@ -3,7 +3,11 @@ guid: 41a37dac0f37a7247875c11020750205
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - iceSprite: {fileID: 21300000, guid: 93d5bc93d0716004893c064221244e9e, type: 3}
+  - fireSprite: {fileID: 21300000, guid: b89229e463b4f03459379c5b3c9404bf, type: 3}
+  - enemySprite: {fileID: 21300000, guid: b89229e463b4f03459379c5b3c9404bf, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

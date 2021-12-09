@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7596809769996803987}
   - component: {fileID: 4770889167670741933}
   - component: {fileID: 1924684720074417549}
-  - component: {fileID: 3961350745270339080}
+  - component: {fileID: 7850696263687222102}
   m_Layer: 0
   m_Name: Turret_bullet
   m_TagString: Untagged
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3961350745270339080
+--- !u!114 &7850696263687222102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,9 +141,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4758666307326271450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41a37dac0f37a7247875c11020750205, type: 3}
+  m_Script: {fileID: 11500000, guid: c5c008eb5e21b8845bcaa318819bbf1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7596809769996803987}
-  iceSprite: {fileID: 0}
-  fireSprite: {fileID: 0}
+  enemySprite: {fileID: 21300000, guid: a111f884526dda747b88a4566fd8b132, type: 3}

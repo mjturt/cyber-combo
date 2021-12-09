@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
     Vector2 walkAmount;
 
     public bool canShoot = false;  // can the enemy shoot or not
-    public Bullet bullet;
+    public EnemyBullet bullet;
     public float bulletSpeed = 5.0f;
     public float rateOfFire = 5.0f; // how many seconds between shots 
     protected float gunCoolDown = 0f;  // is it time to shoot yet?
@@ -73,12 +73,11 @@ public class Enemy : MonoBehaviour {
     protected void Shoot()
     {
         if (null != _audio) _audio.Play("EnemyShoot");
-        Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
+        EnemyBullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as EnemyBullet;
+        bulletItem.setOwner(this.gameObject);
         
         // Shoot towards the direction entity is facing
-        bulletItem.rb.velocity = new Vector2(walkingDirection * bulletSpeed, 0);        
-        bulletItem.setIsHostile(true);
-        
+        bulletItem.rb.velocity = new Vector2(walkingDirection * bulletSpeed, 0);         
     }
 
     public void Freeze()

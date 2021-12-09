@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 1
   canShoot: 1
-  bullet: {fileID: 3961350745270339080, guid: a81aa009b6e92024cb51d321c10ff906, type: 3}
+  bullet: {fileID: 5357291606100176836, guid: bafff53ea52509d48968914352686530, type: 3}
   bulletSpeed: 5
   rateOfFire: 5
   freezeTimer: 10
