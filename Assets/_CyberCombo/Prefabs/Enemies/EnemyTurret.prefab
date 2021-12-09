@@ -130,7 +130,7 @@ MonoBehaviour:
   canShoot: 1
   bullet: {fileID: 5357291606100176836, guid: bafff53ea52509d48968914352686530, type: 3}
   bulletSpeed: 5
-  rateOfFire: 5
+  rateOfFire: 2
   freezeTimer: 10
   permaFrost: 0
   walkWidth: 0
@@ -160,8 +160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2953110968938596109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.43, y: 0.002, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 2953110968676351991}
   m_RootOrder: 0
