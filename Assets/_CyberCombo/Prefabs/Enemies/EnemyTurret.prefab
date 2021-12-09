@@ -130,7 +130,7 @@ MonoBehaviour:
   canShoot: 1
   bullet: {fileID: 3961350745270339080, guid: a81aa009b6e92024cb51d321c10ff906, type: 3}
   bulletSpeed: 5
-  rateOfFire: 5
+  rateOfFire: 2
   freezeTimer: 10
   permaFrost: 0
   walkWidth: 0
