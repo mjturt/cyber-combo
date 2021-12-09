@@ -7,8 +7,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 initialLocation;
     public Sprite iceSprite;
-    public Sprite fireSprite;
-    
+    public Sprite fireSprite;    
     private PlayerMovement pM;
 
     private Restart _restart;
@@ -19,8 +18,7 @@ public class Bullet : MonoBehaviour
     {
         initialLocation = rb.position; 
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
-        iceSprite = pM.iceSprite;
-        fireSprite = pM.fireSprite;
+        iceSprite = pM.iceSprite;        
         if (pM.iceBullet)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = iceSprite;
