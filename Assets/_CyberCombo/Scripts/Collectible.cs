@@ -105,9 +105,15 @@ public class Collectible : MonoBehaviour
            slots.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<RawImage>().enabled = true; //gun
            
            if (slots.imgs[2].enabled == false)
-               slots.imgs[8].enabled = true; //ice power
+            {
+                slots.imgs[8].enabled = true; //ice power
+                pMovement.iceBullet = true;
+            }
            else
-               slots.imgs[10].enabled = true; //fire power
+            {
+                slots.imgs[10].enabled = true; //fire power
+                pMovement.fireBullet = true;
+            }
 
         }
        
