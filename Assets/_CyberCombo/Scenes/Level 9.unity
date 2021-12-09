@@ -568,7 +568,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 282242942, guid: cc667c22c75889541a1f9b444e4a9de1, type: 3}
       propertyPath: walkWidth
-      value: 7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6289782576290629661, guid: cc667c22c75889541a1f9b444e4a9de1, type: 3}
       propertyPath: m_RootOrder
