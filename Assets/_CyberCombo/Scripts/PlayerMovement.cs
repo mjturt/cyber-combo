@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public bool iceBoots;
     public bool fireBullet;
     public bool iceBullet;
+    public GameObject rocketBootsEffect;
+    private int effectDeleteTimer;
 
     public bool Fire = false;
     public bool Magnet = false;
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Restart _restart;
     private AudioManager _audio;
+    private GameObject doubleJumpEffect;
 
     private bool icy;
 
@@ -48,7 +51,12 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        
+        if (effectDeleteTimer == 0)
+            Destroy(doubleJumpEffect);
+        if (effectDeleteTimer >= 0)
+                effectDeleteTimer--;
+
+
         //Kill player on falling out of map
         if (gameObject.transform.localPosition.y < -10)
         {
@@ -122,6 +130,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
+
+            //Double jump effect
+            Vector3 effectPosition = transform.position;
+            effectDeleteTimer = 140;
+            effectPosition.y -= 0.5f;
+            if (doubleJumpEffect)
+                Destroy(doubleJumpEffect);
+            else
+                doubleJumpEffect = Instantiate(rocketBootsEffect, effectPosition, transform.rotation);
         }
         else if (hasJumped)
         {

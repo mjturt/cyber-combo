@@ -157,6 +157,7 @@ MonoBehaviour:
   iceBoots: 0
   fireBullet: 0
   iceBullet: 0
+  rocketBootsEffect: {fileID: 8726789775480116438, guid: 2a6fccc9a3522104eaa6c26bcc4ea552, type: 3}
   Fire: 1
   Magnet: 0
   Ice: 1
