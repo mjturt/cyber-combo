@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool iceBullet;
     public GameObject rocketBootsEffect;
     private int effectDeleteTimer;
+    private float effectHeight = 0.45f;
 
     public bool Fire = false;
     public bool Magnet = false;
@@ -52,9 +53,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (effectDeleteTimer == 0)
+        {
             Destroy(doubleJumpEffect);
-        if (effectDeleteTimer >= 0)
-                effectDeleteTimer--;
+            effectDeleteTimer--;
+        }
+        if (effectDeleteTimer > 0)
+        {
+            Vector3 effectPosition = transform.position;
+            effectPosition.y -= effectHeight;
+            doubleJumpEffect.transform.position = effectPosition;
+            effectDeleteTimer--;
+        }
 
 
         //Kill player on falling out of map
@@ -133,8 +142,8 @@ public class PlayerMovement : MonoBehaviour
 
             //Double jump effect
             Vector3 effectPosition = transform.position;
-            effectDeleteTimer = 140;
-            effectPosition.y -= 0.5f;
+            effectDeleteTimer = 60;
+            effectPosition.y -= effectHeight;
             if (doubleJumpEffect)
                 Destroy(doubleJumpEffect);
             else
