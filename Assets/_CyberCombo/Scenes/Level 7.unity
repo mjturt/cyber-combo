@@ -396,6 +396,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5266157806876153970, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b9d1ff3e3ff9d584e90bf2e1b42ef652, type: 3}
+    - target: {fileID: 5266157806876153970, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_Color.b
       value: 0.21960786
       objectReference: {fileID: 0}
@@ -410,6 +414,42 @@ PrefabInstance:
     - target: {fileID: 5848961790836841036, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.6509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4288259584
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_overrideHtmlColors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9061422603792790780, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
