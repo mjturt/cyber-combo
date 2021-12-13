@@ -75,11 +75,7 @@ public class PlayerMovement : MonoBehaviour
         
         horizontal = Input.GetAxis("Horizontal");
         
-        if (icy)
-        {
-            rb.AddForce(new Vector2(horizontal * speed * 3, rb.velocity.y));
-        }
-        else
+        if (!icy)
         {
             //Left-right movement
             rb.velocity = new Vector2(horizontal * speed,rb.velocity.y); 
@@ -122,6 +118,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        if (icy)
+        {
+            rb.AddForce(new Vector2(horizontal * speed * 3, rb.velocity.y));
+        }
         //Jump/doublejump physics
         if (isGrounded())
             doubleJump = true;
