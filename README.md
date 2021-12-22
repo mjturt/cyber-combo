@@ -20,7 +20,7 @@ WebGL build might or might not be [here](https://cyber-combo.turtia.org/).
 - Maks Turtiainen
 - Milla Oksanen
 
-## 3rd part assets
+## 3rd party assets
 
 - DL Sounds
 - qubodup
