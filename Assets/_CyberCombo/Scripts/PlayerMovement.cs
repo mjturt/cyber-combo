@@ -6,12 +6,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float horizontal;
+    private bool moveLeft;
+    private bool moveRight;
     private bool hasJumped;
-    public float speed = 10.0f;
+    private float accelerationSpeed = 100.0f;
+    private float maximumSpeed = 5.0f;
     public float jumpForce = 500f;
     private BoxCollider2D bc;
     [SerializeField] private LayerMask groundLayer;
+    private bool isGrounded;
     private bool doubleJump;
     public bool rocketBoots;
     public bool iceBoots;
@@ -72,14 +75,9 @@ public class PlayerMovement : MonoBehaviour
         {
             _restart.Death();
         }
-        
-        horizontal = Input.GetAxis("Horizontal");
-        
-        if (!icy)
-        {
-            //Left-right movement
-            rb.velocity = new Vector2(horizontal * speed,rb.velocity.y); 
-        }
+
+        moveLeft = Input.GetAxisRaw("Horizontal") < 0;
+        moveRight = Input.GetAxisRaw("Horizontal") > 0;
 
         /*Crouch Animation
         if (Input.GetButton("Crouch"))
@@ -92,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             bc.size = new Vector2(2.1f,2.4f);
             jumpAnim.SetBool("isCrouched", false);
         }*/
-            
+
         //Jump animations and triggers
         if (Input.GetButtonDown("Jump"))
         {
@@ -118,16 +116,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        if (icy)
-        {
-            rb.AddForce(new Vector2(horizontal * speed * 3, rb.velocity.y));
-        }
+        moveHorizontally();
+
+        isGrounded = touchesGround();
+
         //Jump/doublejump physics
-        if (isGrounded())
+        if (isGrounded)
             doubleJump = true;
 
-        if (hasJumped && isGrounded())
+        if (hasJumped && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
@@ -173,11 +170,100 @@ public class PlayerMovement : MonoBehaviour
 
         // Player animations
         animator.SetFloat("Speed", Input.GetAxisRaw("Horizontal"));
-        animator.SetBool("isGrounded", isGrounded());
+        animator.SetBool("isGrounded", isGrounded);
+    }
+
+    private void moveHorizontally()
+    {
+        if (moveLeft || moveRight) // accelerate
+        {
+            if (!isGrounded) // air
+            {
+                if (moveRight)
+                {
+                    if (rb.velocity.x < 0)
+                        rb.AddForce(new Vector2(accelerationSpeed, 0));
+                    else if (rb.velocity.x < maximumSpeed)
+                        rb.AddForce(new Vector2(accelerationSpeed * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
+                }
+                else if (moveLeft)
+                {
+                    if (rb.velocity.x > 0)
+                        rb.AddForce(new Vector2(-accelerationSpeed, 0));
+                    else if (rb.velocity.x > -maximumSpeed)
+                        rb.AddForce(new Vector2(-accelerationSpeed * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
+                }
+
+            }
+            else if (!icy) // ground
+            {
+                if (moveRight)
+                {
+                    if (rb.velocity.x < -2)
+                        rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y); // Prevent acceleration being smaller than deceleration
+                    else if (rb.velocity.x < 0)
+                        rb.AddForce(new Vector2(accelerationSpeed, 0));
+                    else if (rb.velocity.x < maximumSpeed)
+                        rb.AddForce(new Vector2(accelerationSpeed * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
+                }
+                else if (moveLeft)
+                {
+                    if (rb.velocity.x > 2)
+                        rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y);
+                    if (rb.velocity.x > 0)
+                        rb.AddForce(new Vector2(-accelerationSpeed, 0));
+                    else if (rb.velocity.x > -maximumSpeed)
+                        rb.AddForce(new Vector2(-accelerationSpeed * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
+                }
+
+            }
+            else // ice
+            {
+                float iceAccelerationFactor = 0.4f;
+                if (moveRight)
+                {
+                    if (rb.velocity.x < 0)
+                        rb.AddForce(new Vector2(accelerationSpeed * iceAccelerationFactor, 0));
+                    else if (rb.velocity.x < maximumSpeed)
+                        rb.AddForce(new Vector2(accelerationSpeed * iceAccelerationFactor * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
+                }
+                else if (moveLeft)
+                    if (rb.velocity.x > 0)
+                        rb.AddForce(new Vector2(-accelerationSpeed * iceAccelerationFactor, 0));
+                    else if (rb.velocity.x > -maximumSpeed)
+                        rb.AddForce(new Vector2(-accelerationSpeed * iceAccelerationFactor * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
+            }
+        }
+        else // decelerate
+        {
+            if (!isGrounded) // air
+            {
+                if (Mathf.Abs(rb.velocity.x) < 1)
+                    rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y);
+                else if (rb.velocity.x > 0)
+                    rb.AddForce(new Vector2(-accelerationSpeed * 0.9f, 0));
+                else if (rb.velocity.x < 0)
+                    rb.AddForce(new Vector2(accelerationSpeed * 0.9f, 0));
+            }
+            else if (!icy) // ground
+            {
+                if (Mathf.Abs(rb.velocity.x) < 0.5)
+                    rb.velocity = new Vector2(rb.velocity.x * 0.73f, rb.velocity.y);
+                else
+                    rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y);
+            }
+            else // ice
+            {
+                if (Mathf.Abs(rb.velocity.x) < 0.3)
+                    rb.velocity = new Vector2(rb.velocity.x * 0.90f, rb.velocity.y);
+                else
+                    rb.velocity = new Vector2(rb.velocity.x * 0.98f, rb.velocity.y);
+            }
+        }
     }
 
     //Function to check if player is touching ground
-    private bool isGrounded()
+    private bool touchesGround()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
         if (raycastHit.normal.y > 0 && raycastHit.transform.tag != "Danger")
@@ -188,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Function to check if player is walking (for walking sounds)
     private bool isWalking() {
-        if (Input.GetAxis("Horizontal") != 0 && isGrounded() && rb.velocity.magnitude > .2) return true;
+        if (Input.GetAxis("Horizontal") != 0 && isGrounded && rb.velocity.magnitude > .2) return true;
         return false;
     }
 
@@ -198,7 +284,7 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    // Function to check if player is walking left (for walking animation)
+    // Function to check if player is walking right (for walking animation)
     private bool isMovingRight() {
         if (0 > Input.GetAxis("Horizontal") && rb.velocity.magnitude > .2) return true;
         return false;
