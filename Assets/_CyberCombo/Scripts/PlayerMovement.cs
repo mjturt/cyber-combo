@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private bool moveLeft;
     private bool moveRight;
     private bool hasJumped;
-    private float accelerationSpeed = 100.0f;
+    private float accelerationSpeed = 120.0f;
     private float maximumSpeed = 5.0f;
     public float jumpForce = 500f;
     private BoxCollider2D bc;
@@ -199,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (moveRight)
                 {
-                    if (rb.velocity.x < -2)
+                    if (rb.velocity.x < -1)
                         rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y); // Prevent acceleration being smaller than deceleration
                     else if (rb.velocity.x < 0)
                         rb.AddForce(new Vector2(accelerationSpeed, 0));
@@ -208,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (moveLeft)
                 {
-                    if (rb.velocity.x > 2)
+                    if (rb.velocity.x > 1)
                         rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y);
                     if (rb.velocity.x > 0)
                         rb.AddForce(new Vector2(-accelerationSpeed, 0));
@@ -248,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
             else if (!icy) // ground
             {
                 if (Mathf.Abs(rb.velocity.x) < 0.5)
-                    rb.velocity = new Vector2(rb.velocity.x * 0.73f, rb.velocity.y);
+                    rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y);
                 else
                     rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y);
             }
