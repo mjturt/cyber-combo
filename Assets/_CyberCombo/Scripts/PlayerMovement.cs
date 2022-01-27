@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 500f;
     private BoxCollider2D bc;
     [SerializeField] private LayerMask groundLayer;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool doubleJump;
     public bool rocketBoots;
     public bool iceBoots;
