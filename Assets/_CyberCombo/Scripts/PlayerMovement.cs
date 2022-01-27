@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
-            else if (!icy) // ground
+            else if (!icy || iceBoots) // ground
             {
                 if (moveRight)
                 {
@@ -245,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (rb.velocity.x < 0)
                     rb.AddForce(new Vector2(accelerationSpeed * 0.9f, 0));
             }
-            else if (!icy) // ground
+            else if (!icy || iceBoots) // ground
             {
                 if (Mathf.Abs(rb.velocity.x) < 0.5)
                     rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y);
