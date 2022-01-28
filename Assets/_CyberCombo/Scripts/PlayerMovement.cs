@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 500f;
     private BoxCollider2D bc;
     [SerializeField] private LayerMask groundLayer;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool doubleJump;
     public bool rocketBoots;
     public bool iceBoots;
@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
-            else if (!icy) // ground
+            else if (!icy || iceBoots) // ground
             {
                 if (moveRight)
                 {
@@ -245,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (rb.velocity.x < 0)
                     rb.AddForce(new Vector2(accelerationSpeed * 0.9f, 0));
             }
-            else if (!icy) // ground
+            else if (!icy || iceBoots) // ground
             {
                 if (Mathf.Abs(rb.velocity.x) < 0.5)
                     rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y);
