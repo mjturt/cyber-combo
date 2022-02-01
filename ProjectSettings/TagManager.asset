@@ -14,6 +14,7 @@ TagManager:
   - Gun
   - Frozen
   - Ice
+  - Metal
   layers:
   - Default
   - TransparentFX
