@@ -18,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private bool doubleJump;
     public bool rocketBoots;
     public bool iceBoots;
+    public bool magnetBoots;
     public bool fireBullet;
     public bool iceBullet;
+    public bool magnetBullet;
     public GameObject rocketBootsEffect;
     private float effectDeleteTimer;
     private float effectHeight = 0.45f;

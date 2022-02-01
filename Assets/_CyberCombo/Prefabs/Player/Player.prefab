@@ -148,11 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178ddff44f7bcee4aa24ec072bd3dcc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceFriction: 0.2
   jumpForce: 55
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isGrounded: 0
   rocketBoots: 1
   iceBoots: 0
   fireBullet: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   Ice: 1
   Gun: 1
   bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
-  iceSprite: {fileID: 0}
+  iceSprite: {fileID: 21300000, guid: 7187923c211855f42ad6ee275b8ebfb0, type: 3}
   bulletSpeed: 7
   animator: {fileID: 251046391206343916}
 --- !u!114 &306339102

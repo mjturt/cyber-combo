@@ -16,8 +16,8 @@ public class SlotSystem : MonoBehaviour
 
     private PlayerMovement pM;
 
-    private int uClickCount;
-    private int dClickCount = 1;
+    public int uClickCount;
+    public int dClickCount = 1;
 
     private AudioManager _audio;
     
@@ -51,33 +51,66 @@ public class SlotSystem : MonoBehaviour
             if (pM.Fire && pM.Ice && pM.Magnet)
             {
                 if (_audio != null) _audio.Play("ChangeItem");
+                /* game design changed
                 //Skip element if its already assigned to other slot
                 if (uClickCount % 3 == dClickCount % 3)
                 {
                     uClickCount++;
                 }
+                */
+
                 switch (uClickCount % 3)
                 {
                     case 0:
-                        uImg1.enabled = true;
-                        uImg2.enabled = false;
-                        uImg3.enabled = false;
-
-                        pM.rocketBoots = false;
-                        break;
-                    case 1:
-                        uImg1.enabled = false;
-                        uImg2.enabled = true;
-                        uImg3.enabled = false;
-
-                        pM.rocketBoots = false;
-                        break;
-                    case 2:
                         uImg1.enabled = false;
                         uImg2.enabled = false;
                         uImg3.enabled = true;
 
                         pM.rocketBoots = true;
+                        pM.iceBoots = false;
+                        pM.magnetBoots = false;
+
+                        dImg1.enabled = true;
+                        dImg2.enabled = false;
+                        dImg3.enabled = false;
+
+                        pM.iceBullet = true;
+                        pM.magnetBullet = false;
+                        pM.fireBullet = false;
+                        break;
+                    case 1:
+                        uImg1.enabled = true;
+                        uImg2.enabled = false;
+                        uImg3.enabled = false;
+
+                        pM.rocketBoots = false;
+                        pM.iceBoots = true;
+                        pM.magnetBoots = false;
+
+                        dImg1.enabled = false;
+                        dImg2.enabled = true;
+                        dImg3.enabled = false;
+
+                        pM.iceBullet = false;
+                        pM.magnetBullet = true;
+                        pM.fireBullet = false;
+                        break;
+                    case 2:
+                        uImg1.enabled = false;
+                        uImg2.enabled = true;
+                        uImg3.enabled = false;
+
+                        pM.rocketBoots = false;
+                        pM.iceBoots = false;
+                        pM.magnetBoots = true;
+
+                        dImg1.enabled = false;
+                        dImg2.enabled = false;
+                        dImg3.enabled = true;
+
+                        pM.iceBullet = false;
+                        pM.magnetBullet = false;
+                        pM.fireBullet = true;
                         break;
                 }
             }
