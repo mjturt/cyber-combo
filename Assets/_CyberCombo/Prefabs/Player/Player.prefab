@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1745986775}
   - component: {fileID: 1486254774}
   - component: {fileID: 251046391206343916}
+  - component: {fileID: 664894255947208444}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -152,11 +153,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  isGrounded: 0
+  onGround: 0
   rocketBoots: 1
   iceBoots: 0
+  magnetBoots: 0
   fireBullet: 0
   iceBullet: 0
+  magnetBullet: 0
   rocketBootsEffect: {fileID: 8726789775480116438, guid: 2a6fccc9a3522104eaa6c26bcc4ea552, type: 3}
   Fire: 1
   Magnet: 0
@@ -235,3 +238,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &664894255947208444
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462536997848490294}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.06, y: 4.91}
+  m_Direction: 0

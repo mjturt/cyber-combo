@@ -14,7 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 500f;
     private BoxCollider2D bc;
     [SerializeField] private LayerMask groundLayer;
-    public bool isGrounded;
+    public bool onGround;
+    private bool attractedToMetal;
+    private float rotationSpeed = 10f;
     private bool doubleJump;
     public bool rocketBoots;
     public bool iceBoots;
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();        
+        bc = GetComponent<BoxCollider2D>();
         _restart = GetComponent<Restart>();
         _audio = FindObjectOfType<AudioManager>();
         walkingSource = _audio.GetSource("Walk");
@@ -81,30 +83,12 @@ public class PlayerMovement : MonoBehaviour
         moveLeft = Input.GetAxisRaw("Horizontal") < 0;
         moveRight = Input.GetAxisRaw("Horizontal") > 0;
 
-        /*Crouch Animation
-        if (Input.GetButton("Crouch"))
-        {
-            bc.size = new Vector2(2.1f,1.5f);
-            jumpAnim.SetBool("isCrouched", true);
-        }
-        else
-        {
-            bc.size = new Vector2(2.1f,2.4f);
-            jumpAnim.SetBool("isCrouched", false);
-        }*/
-
         //Jump animations and triggers
         if (Input.GetButtonDown("Jump"))
         {
             hasJumped = true;
             
         }
-
-        /*//Double jump toggle (for testing)
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            rocketBoots = !rocketBoots;
-        }*/
 
         // Shooting
         if (Input.GetMouseButtonDown(0))
@@ -118,22 +102,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        onGround = touchesGround();
+
+        if (!attractedToMetal)
+            rotatePlayer();
+        else
+            onGround = true;
+
+
         moveHorizontally();
 
-        isGrounded = touchesGround();
-
         //Jump/doublejump physics
-        if (isGrounded)
+        if (onGround)
             doubleJump = true;
 
-        if (hasJumped && isGrounded)
+        if (hasJumped && onGround && !attractedToMetal)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             hasJumped = false;
             if (null != _audio) _audio.Play("Jump");
         }
-        else if (hasJumped && doubleJump && rocketBoots)
+        else if (hasJumped && doubleJump && rocketBoots && !attractedToMetal)
         {
             if (null != _audio) _audio.Play("DoubleJump");
             doubleJump = false;
@@ -172,30 +162,120 @@ public class PlayerMovement : MonoBehaviour
 
         // Player animations
         animator.SetFloat("Speed", Input.GetAxisRaw("Horizontal"));
-        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isGrounded", onGround);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Metal" && magnetBoots)
+        {
+            rb.gravityScale = 0;
+            attractedToMetal = true;
+            Vector2 closestPoint = collision.ClosestPoint(bc.bounds.center);
+            Vector2 actualVector = new Vector2(closestPoint.x - bc.bounds.center.x, closestPoint.y - bc.bounds.center.y);
+            actualVector.Normalize();
+
+            // Attract
+            rb.AddForce(9.8f * 180 * new Vector2(closestPoint.x - bc.bounds.center.x, closestPoint.y - bc.bounds.center.y));
+
+            // Rotate
+            rotateToDegree(actualVector);
+        }
+        else
+        {
+            attractedToMetal = false;
+            rb.gravityScale = 1.5f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        attractedToMetal = false;
+        rb.gravityScale = 1.5f;
+    }
+
+    /*
+     * Rotates the player to the direction opposite to the vector
+     */
+    private void rotateToDegree(Vector2 reverseDirection)
+    {
+        float angle = (Mathf.Atan2(reverseDirection.y, reverseDirection.x) / (2 * Mathf.PI) * 360);
+
+        float playerAngle = transform.eulerAngles.z;
+        
+        if (angle < 0)
+            angle += 360;
+
+        angle -= 270;
+
+        if (angle < 0)
+            angle += 360;
+
+        if ((playerAngle > angle + 5.5f && playerAngle <= angle + 180) || playerAngle < angle - 180)
+        {
+            transform.Rotate(Vector3.forward, -rotationSpeed);
+        }
+        else if ((playerAngle < angle - 5.5f && playerAngle >= angle - 180) || playerAngle > angle + 180)
+        {
+            transform.Rotate(Vector3.forward, rotationSpeed);
+        }
+    }
+
+    private void rotatePlayer()
+    {
+        if (transform.eulerAngles.z > 5f && transform.eulerAngles.z < 180f)
+            transform.Rotate(Vector3.forward, -rotationSpeed);
+        else if (transform.eulerAngles.z > 180f && transform.eulerAngles.z < 355f)
+            transform.Rotate(Vector3.forward, rotationSpeed);
+        else // shouldn't happen. I don't know whether this works in resetting rotation.
+            transform.rotation.Set(0, 0, 0, transform.rotation.w);
     }
 
     private void moveHorizontally()
     {
-        if (moveLeft || moveRight) // accelerate
+        // Magnetic movement
+        if (attractedToMetal)
         {
-            if (!isGrounded) // air
+            float magneticSpeedMultiplier = 0.7f;
+            if (moveRight)
+            {
+                if (rb.transform.right.x * rb.velocity.x + rb.transform.right.y * rb.velocity.y < -1f)
+                    rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y * 0.75f);
+                else if (rb.transform.right.x * rb.velocity.x + rb.transform.right.y * rb.velocity.y < maximumSpeed)
+                    rb.AddRelativeForce(new Vector2(accelerationSpeed * magneticSpeedMultiplier, 0));
+            }
+            else if (moveLeft)
+            {
+                if (-rb.transform.right.x * rb.velocity.x + -rb.transform.right.y * rb.velocity.y < -1f)
+                    rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y * 0.75f);
+                else if (-rb.transform.right.x * rb.velocity.x + -rb.transform.right.y * rb.velocity.y < maximumSpeed)
+                    rb.AddRelativeForce(new Vector2(-accelerationSpeed * magneticSpeedMultiplier, 0));
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y * 0.75f);
+            }
+        }
+
+        // Non magnetic movement
+        else if (moveLeft || moveRight) // accelerate
+        {
+            if (!onGround) // air
             {
                 if (moveRight)
                 {
                     if (rb.velocity.x < 0)
-                        rb.AddForce(new Vector2(accelerationSpeed, 0));
+                        rb.AddRelativeForce(new Vector2(accelerationSpeed, 0));
                     else if (rb.velocity.x < maximumSpeed)
-                        rb.AddForce(new Vector2(accelerationSpeed * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
+                        rb.AddRelativeForce(new Vector2(accelerationSpeed * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
                 }
                 else if (moveLeft)
                 {
                     if (rb.velocity.x > 0)
-                        rb.AddForce(new Vector2(-accelerationSpeed, 0));
+                        rb.AddRelativeForce(new Vector2(-accelerationSpeed, 0));
                     else if (rb.velocity.x > -maximumSpeed)
-                        rb.AddForce(new Vector2(-accelerationSpeed * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
+                        rb.AddRelativeForce(new Vector2(-accelerationSpeed * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
                 }
-
             }
             else if (!icy || iceBoots) // ground
             {
@@ -204,20 +284,19 @@ public class PlayerMovement : MonoBehaviour
                     if (rb.velocity.x < -1)
                         rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y); // Prevent acceleration being smaller than deceleration
                     else if (rb.velocity.x < 0)
-                        rb.AddForce(new Vector2(accelerationSpeed, 0));
+                        rb.AddRelativeForce(new Vector2(accelerationSpeed, 0));
                     else if (rb.velocity.x < maximumSpeed)
-                        rb.AddForce(new Vector2(accelerationSpeed * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
+                        rb.AddRelativeForce(new Vector2(accelerationSpeed * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
                 }
                 else if (moveLeft)
                 {
                     if (rb.velocity.x > 1)
                         rb.velocity = new Vector2(rb.velocity.x * 0.82f, rb.velocity.y);
-                    if (rb.velocity.x > 0)
-                        rb.AddForce(new Vector2(-accelerationSpeed, 0));
+                    else if (rb.velocity.x > 0)
+                        rb.AddRelativeForce(new Vector2(-accelerationSpeed, 0));
                     else if (rb.velocity.x > -maximumSpeed)
-                        rb.AddForce(new Vector2(-accelerationSpeed * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
+                        rb.AddRelativeForce(new Vector2(-accelerationSpeed * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
                 }
-
             }
             else // ice
             {
@@ -225,27 +304,27 @@ public class PlayerMovement : MonoBehaviour
                 if (moveRight)
                 {
                     if (rb.velocity.x < 0)
-                        rb.AddForce(new Vector2(accelerationSpeed * iceAccelerationFactor, 0));
+                        rb.AddRelativeForce(new Vector2(accelerationSpeed * iceAccelerationFactor, 0));
                     else if (rb.velocity.x < maximumSpeed)
-                        rb.AddForce(new Vector2(accelerationSpeed * iceAccelerationFactor * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
+                        rb.AddRelativeForce(new Vector2(accelerationSpeed * iceAccelerationFactor * Mathf.Sqrt((maximumSpeed - rb.velocity.x) / maximumSpeed), 0));
                 }
                 else if (moveLeft)
                     if (rb.velocity.x > 0)
-                        rb.AddForce(new Vector2(-accelerationSpeed * iceAccelerationFactor, 0));
+                        rb.AddRelativeForce(new Vector2(-accelerationSpeed * iceAccelerationFactor, 0));
                     else if (rb.velocity.x > -maximumSpeed)
-                        rb.AddForce(new Vector2(-accelerationSpeed * iceAccelerationFactor * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
+                        rb.AddRelativeForce(new Vector2(-accelerationSpeed * iceAccelerationFactor * Mathf.Sqrt((maximumSpeed + rb.velocity.x) / maximumSpeed), 0));
             }
         }
         else // decelerate
         {
-            if (!isGrounded) // air
+            if (!onGround) // air
             {
                 if (Mathf.Abs(rb.velocity.x) < 1)
                     rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y);
                 else if (rb.velocity.x > 0)
-                    rb.AddForce(new Vector2(-accelerationSpeed * 0.9f, 0));
+                    rb.AddRelativeForce(new Vector2(-accelerationSpeed * 0.9f, 0));
                 else if (rb.velocity.x < 0)
-                    rb.AddForce(new Vector2(accelerationSpeed * 0.9f, 0));
+                    rb.AddRelativeForce(new Vector2(accelerationSpeed * 0.9f, 0));
             }
             else if (!icy || iceBoots) // ground
             {
@@ -268,6 +347,7 @@ public class PlayerMovement : MonoBehaviour
     private bool touchesGround()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+
         if (raycastHit.normal.y > 0 && raycastHit.transform.tag != "Danger")
             return true;
         else
@@ -276,7 +356,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Function to check if player is walking (for walking sounds)
     private bool isWalking() {
-        if (Input.GetAxis("Horizontal") != 0 && isGrounded && rb.velocity.magnitude > .2) return true;
+        if (Input.GetAxis("Horizontal") != 0 && onGround && rb.velocity.magnitude > .2) return true;
         return false;
     }
 

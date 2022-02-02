@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8158965451284547815}
   - component: {fileID: 682965413}
   - component: {fileID: 414118505}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ButtonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,4 +167,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aa8bdc32f442d4190fece923fff6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPortal: {fileID: 0}

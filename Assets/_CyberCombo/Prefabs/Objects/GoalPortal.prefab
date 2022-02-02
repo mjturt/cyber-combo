@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5022901754625755008}
   - component: {fileID: 5022901754625755011}
   - component: {fileID: -4626362905301622620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GoalPortal
   m_TagString: Goal
   m_Icon: {fileID: 0}

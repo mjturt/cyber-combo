@@ -33,9 +33,10 @@ public class EnemyBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject target = collision.gameObject;
+        /*
         Debug.Log(  "Enemy " + this.gameObject.name + " shooting at " + target.name 
                   + " target.equals(shooter) = " + target.Equals(this.owner));
-              
+        */              
         if (target.name.Equals("Player"))
         {
             _restart.Death();

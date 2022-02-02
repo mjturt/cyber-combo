@@ -42,7 +42,7 @@ public class SlotSystem : MonoBehaviour
     {
 
         //Upper row Logic
-        if (Input.GetKeyDown(KeyCode.Q) && pM.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Q) && pM.onGround)
         {
             uClickCount++;
             
@@ -173,7 +173,7 @@ public class SlotSystem : MonoBehaviour
             }
         }
         //Second row logic
-        if (Input.GetKeyDown(KeyCode.E) && pM.isGrounded)
+        if (Input.GetKeyDown(KeyCode.E) && pM.onGround)
         {
             dClickCount++;
 
