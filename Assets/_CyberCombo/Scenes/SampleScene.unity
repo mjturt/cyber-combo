@@ -1499,27 +1499,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &547811612 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-  m_PrefabInstance: {fileID: 818735722}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &547811622
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547811612}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.06, y: 4.91}
-  m_Direction: 0
 --- !u!1 &630604344
 GameObject:
   m_ObjectHideFlags: 0
@@ -7986,10 +7965,6 @@ PrefabInstance:
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462536997848490291, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-      propertyPath: m_GravityScale
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: Magnet
