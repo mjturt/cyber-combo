@@ -4705,17 +4705,25 @@ PrefabInstance:
       propertyPath: unlockButton
       value: 
       objectReference: {fileID: 1358715292}
+    - target: {fileID: 1008013306701210130, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241485036294960550, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.9
+      value: -10.84
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.37
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_LocalPosition.z

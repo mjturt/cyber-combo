@@ -8220,6 +8220,10 @@ PrefabInstance:
       propertyPath: unlockButton
       value: 
       objectReference: {fileID: 1358715292}
+    - target: {fileID: 1008013306701210130, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8262,18 +8266,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-      propertyPath: iceBullet
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-      propertyPath: iceSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7187923c211855f42ad6ee275b8ebfb0, type: 3}
-    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
-      propertyPath: fireBullet
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}

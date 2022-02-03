@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 shootTargetPos;
     public float bulletSpeed;
 
+    public GameObject gunPos;
+    
+
     private Restart _restart;
     private AudioManager _audio;
     private GameObject doubleJumpEffect;
@@ -392,7 +395,7 @@ public class PlayerMovement : MonoBehaviour
     {
         shootTargetPos.Normalize();
         Debug.Log("ShootVector: " + shootTargetPos);
-        Bullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as Bullet;        
+        Bullet bulletItem = Instantiate(bullet, gunPos.transform.position, transform.rotation) as Bullet;        
         bulletItem.rb.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
         if (fireBullet) {
             if (null != _audio) _audio.Play("ShootFire");

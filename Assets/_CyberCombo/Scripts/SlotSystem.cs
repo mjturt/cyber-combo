@@ -15,6 +15,7 @@ public class SlotSystem : MonoBehaviour
     private Image dImg3;
 
     private PlayerMovement pM;
+    private RotateGun rG;
 
     public int uClickCount;
     public int dClickCount = 1;
@@ -33,6 +34,7 @@ public class SlotSystem : MonoBehaviour
 
         //pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
+        rG = GameObject.Find("/Player").GetComponentInChildren<RotateGun>();
 
         _audio = FindObjectOfType<AudioManager>();
     }
@@ -77,6 +79,9 @@ public class SlotSystem : MonoBehaviour
                         pM.iceBullet = true;
                         pM.magnetBullet = false;
                         pM.fireBullet = false;
+
+                        rG.gunSprite.sprite = rG.iceSprite;
+                        Debug.Log("ice");
                         break;
                     case 1:
                         uImg1.enabled = true;
@@ -94,6 +99,8 @@ public class SlotSystem : MonoBehaviour
                         pM.iceBullet = false;
                         pM.magnetBullet = true;
                         pM.fireBullet = false;
+                        
+                        rG.gunSprite.sprite = rG.magnetSprite;
                         break;
                     case 2:
                         uImg1.enabled = false;
@@ -111,6 +118,9 @@ public class SlotSystem : MonoBehaviour
                         pM.iceBullet = false;
                         pM.magnetBullet = false;
                         pM.fireBullet = true;
+                        
+                        rG.gunSprite.sprite = rG.fireSprite;
+                        Debug.Log("fire");
                         break;
                 }
             }
@@ -132,6 +142,9 @@ public class SlotSystem : MonoBehaviour
 
                         pM.fireBullet = true;
                         pM.iceBullet = false;
+                        
+                        rG.gunSprite.sprite = rG.fireSprite;
+                        Debug.Log("fire");
                         break;
                     case 0:
                         uImg1.enabled = false;
@@ -145,6 +158,9 @@ public class SlotSystem : MonoBehaviour
 
                         pM.fireBullet = false;
                         pM.iceBullet = true;
+                        
+                        rG.gunSprite.sprite = rG.iceSprite;
+                        Debug.Log("ice");
                         break;
                 }
             }

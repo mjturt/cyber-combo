@@ -98,6 +98,7 @@ public class Collectible : MonoBehaviour
            if (null != _audio) _audio.Play("GetGun");
            Destroy(other.gameObject);
            pMovement.Gun = true;
+           pMovement.gunPos.GetComponent<SpriteRenderer>().enabled = true;
 
            slots.imgs[6].enabled = true; //left white bg
            slots.imgs[7].enabled = true; //right white bg

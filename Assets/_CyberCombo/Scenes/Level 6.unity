@@ -8320,6 +8320,22 @@ PrefabInstance:
       propertyPath: unlockButton
       value: 
       objectReference: {fileID: 1358715292}
+    - target: {fileID: 1008013306701210130, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241485036294960550, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2559535278986029014, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 1852005868}
+    - target: {fileID: 5049903521406320350, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8376,6 +8392,10 @@ PrefabInstance:
       propertyPath: Fire
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: gunPos
+      value: 
+      objectReference: {fileID: 1852005865}
     - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: iceSprite
       value: 
@@ -8949,6 +8969,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799666448}
   m_CullTransparentMesh: 1
+--- !u!1 &1852005865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1241485036294960550, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+  m_PrefabInstance: {fileID: 1027540495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1852005868 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5049903521406320350, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+  m_PrefabInstance: {fileID: 1027540495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1855556377 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5022901754625755012, guid: 7919ea758e111f94e83e0bf2d7ca5960, type: 3}
