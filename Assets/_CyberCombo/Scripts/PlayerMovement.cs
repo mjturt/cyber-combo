@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        
         if (effectDeleteTimer > -1 && effectDeleteTimer < 0)
         {
             Destroy(doubleJumpEffect);
@@ -118,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
         //Jump/doublejump physics
         if (onGround)
             doubleJump = true;
+        
 
         if (hasJumped && onGround && !attractedToMetal)
         {
@@ -166,6 +168,8 @@ public class PlayerMovement : MonoBehaviour
         // Player animations
         animator.SetFloat("Speed", Input.GetAxisRaw("Horizontal"));
         animator.SetBool("isGrounded", onGround);
+        animator.SetBool("doubleJump",doubleJump);
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
