@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             hasFired = true;
             shootTargetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             shootTargetPos.z = 0f;                                    
-            shootTargetPos = shootTargetPos - gameObject.transform.localPosition;
+            shootTargetPos = shootTargetPos - gunPos.transform.position;
         }
     }
 

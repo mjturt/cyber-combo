@@ -18,6 +18,7 @@ public class RotateGun : MonoBehaviour
     public Sprite iceSprite;
     public Sprite magnetSprite;
     private PlayerMovement pM;
+    public Transform playerPos;
 
 
     private void Start()
@@ -35,6 +36,15 @@ public class RotateGun : MonoBehaviour
         mouse_pos.y = mouse_pos.y - object_pos.y;
         angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler( new Vector3(0, 0, angle));
-        
+        if (angle < -90f || angle > 90f)
+        {
+            gunSprite.flipY = true;
+            transform.position = new Vector3(playerPos.position.x - 0.2f, playerPos.position.y,0);
+        }
+        else
+        {
+            gunSprite.flipY = false;
+            transform.position = new Vector3(playerPos.position.x + 0.2f, playerPos.position.y,0);
+        }
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241485036294960550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6068418, y: -0.09507815, z: 0}
+  m_LocalPosition: {x: 1.6068418, y: 0, z: 2}
   m_LocalScale: {x: 7.0890245, y: 7.130868, z: 1}
   m_Children: []
   m_Father: {fileID: 5462536997848490289}
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -855284173
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9158d8c4444b38e47b4ae90bad246afa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,6 +100,7 @@ MonoBehaviour:
   fireSprite: {fileID: 21300000, guid: dbe9f21bce142ef4a8aec9cf7bb81783, type: 3}
   iceSprite: {fileID: 21300000, guid: 9158d8c4444b38e47b4ae90bad246afa, type: 3}
   magnetSprite: {fileID: 21300000, guid: ed71ab7a234690c42b3ac9929ddda5ae, type: 3}
+  playerPos: {fileID: 5462536997848490289}
 --- !u!1 &5462536997848490294
 GameObject:
   m_ObjectHideFlags: 0
