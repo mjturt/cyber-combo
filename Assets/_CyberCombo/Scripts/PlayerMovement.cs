@@ -188,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
             // Rotate
             rotateToDegree(actualVector);
         }
-        else
+        else if(collision.tag == "Metal")
         {
             attractedToMetal = false;
             rb.gravityScale = 1.5f;
@@ -197,8 +197,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        attractedToMetal = false;
-        rb.gravityScale = 1.5f;
+        if (collision.tag == "Metal")
+        {
+            attractedToMetal = false;
+            rb.gravityScale = 1.5f;
+        }
     }
 
     /*
