@@ -15,6 +15,7 @@ TagManager:
   - Frozen
   - Ice
   - Metal
+  - MagnetPickup
   layers:
   - Default
   - TransparentFX

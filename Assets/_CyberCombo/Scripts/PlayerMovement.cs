@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private bool moveLeft;
     private bool moveRight;
     private bool hasJumped;
-    private float accelerationSpeed = 120.0f;
+    public float accelerationSpeed = 120.0f;
     private float maximumSpeed = 5.0f;
     public float jumpForce = 500f;
     private BoxCollider2D bc;

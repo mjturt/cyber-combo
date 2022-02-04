@@ -72,6 +72,12 @@ public class Collectible : MonoBehaviour
            Destroy(other.gameObject);
            pMovement.Ice = true;
        }
+       else if (other.gameObject.CompareTag("MagnetPickup"))
+       {
+           //if (null != _audio) _audio.Play("GetMagnet");  <----Magnet sounds here...
+           Destroy(other.gameObject);
+           pMovement.Magnet = true;
+       }
        
        //End of level handling
        else if (other.gameObject.CompareTag("Goal") && _locked == false)
