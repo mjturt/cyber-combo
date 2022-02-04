@@ -209,23 +209,28 @@ public class PlayerMovement : MonoBehaviour
      */
     private void rotateToDegree(Vector2 reverseDirection)
     {
-        float angle = (Mathf.Atan2(reverseDirection.y, reverseDirection.x) / (2 * Mathf.PI) * 360);
+        float angle = (Mathf.Atan2(reverseDirection.y, reverseDirection.x) / (2 * Mathf.PI) * 360f);
 
         float playerAngle = transform.eulerAngles.z;
         
-        if (angle < 0)
-            angle += 360;
+        if (angle < 0f)
+            angle += 360f;
 
-        angle -= 270;
+        angle -= 270f;
 
-        if (angle < 0)
-            angle += 360;
+        if (angle < 0f)
+            angle += 360f;
 
-        if ((playerAngle > angle + 5.5f && playerAngle <= angle + 180) || playerAngle < angle - 180)
+        if (angle > 359f)
+            angle -= 360f;
+        if (playerAngle > 359f)
+            playerAngle -= 360f;
+
+        if ((playerAngle > angle + 5.5f && playerAngle <= angle + 180f) || playerAngle < angle - 180f)
         {
             transform.Rotate(Vector3.forward, -rotationSpeed);
         }
-        else if ((playerAngle < angle - 5.5f && playerAngle >= angle - 180) || playerAngle > angle + 180)
+        else if ((playerAngle < angle - 5.5f && playerAngle >= angle - 180f) || playerAngle > angle + 180f)
         {
             transform.Rotate(Vector3.forward, rotationSpeed);
         }
