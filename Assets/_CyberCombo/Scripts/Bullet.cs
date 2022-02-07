@@ -27,11 +27,12 @@ public class Bullet : MonoBehaviour
         _audio = FindObjectOfType<AudioManager>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("true");
         GameObject target = collision.gameObject;
         // Players can't shoot themselves nor enemy bullets
-        if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet")) 
+        if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet"))
         {
             Sprite currentSprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
             Destroy(this.gameObject);
@@ -42,9 +43,9 @@ public class Bullet : MonoBehaviour
                 {
                     target.GetComponent<Enemy>().Freeze();
                     if (null != _audio) _audio.Play("Freeze");
-                }                
+                }
                 else
-                {                    
+                {
                     Destroy(target);
                     if (null != _audio) _audio.Play("EnemyDeath");
                 }
@@ -53,7 +54,7 @@ public class Bullet : MonoBehaviour
             {
                 target.GetComponent<Enemy>().UnFreeze();
                 if (null != _audio) _audio.Play("UnFreeze");
-            }        
+            }
         }
     }
 
