@@ -27,7 +27,7 @@ public class RotateGun : MonoBehaviour
         gunSprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    private void Update ()
+    private void FixedUpdate ()
     {
         mouse_pos = Input.mousePosition;
         mouse_pos.z = 5.23f; //The distance between the camera and object
