@@ -34,7 +34,8 @@ public class EnemyBullet : MonoBehaviour
     {
         GameObject target = collision.gameObject;
         if (!collision.gameObject.GetComponent<Rigidbody2D>())
-            return;
+            if (!collision.GetComponent<EnemyTurret>())
+                return;
 
         if (collision.isTrigger)
             return;

@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour {
     public float bulletSpeed = 5.0f;
     public float rateOfFire = 5.0f; // how many seconds between shots 
     protected float gunCoolDown = 0f;  // is it time to shoot yet?
+    public GameObject bulletSpawnPoint;
 
     public float freezeTimer = 10.0f; // Time spent frozen
     protected float timeToMelt = 0.0f;
@@ -47,12 +48,12 @@ public class Enemy : MonoBehaviour {
             
             if (walkingDirection > 0.0f && transform.position.x > wallRight) {
                 walkingDirection = -1.0f;
-                sprite.flipX = false;
+                transform.localScale = new Vector3(-1, 1, 1);
 
             } else if (walkingDirection < 0.0f && transform.position.x < wallLeft)
             {
                 walkingDirection = 1.0f;
-                sprite.flipX = true;
+                transform.localScale = new Vector3(1, 1, 1);
             }
             transform.Translate(walkAmount);
 
@@ -73,7 +74,7 @@ public class Enemy : MonoBehaviour {
     protected void Shoot()
     {
         if (null != _audio) _audio.Play("EnemyShoot");
-        EnemyBullet bulletItem = Instantiate(bullet, transform.position, transform.rotation) as EnemyBullet;
+        EnemyBullet bulletItem = Instantiate(bullet, bulletSpawnPoint.transform.position, transform.rotation) as EnemyBullet;
         bulletItem.setOwner(this.gameObject);
         
         // Shoot towards the direction entity is facing
