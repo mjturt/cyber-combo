@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("true");
         GameObject target = collision.gameObject;
         // Players can't shoot themselves nor enemy bullets
         if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet"))

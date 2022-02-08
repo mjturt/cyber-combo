@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178ddff44f7bcee4aa24ec072bd3dcc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelerationSpeed: 120
   jumpForce: 55
   groundLayer:
     serializedVersion: 2
@@ -269,7 +270,14 @@ MonoBehaviour:
   Gun: 1
   bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
   iceSprite: {fileID: 21300000, guid: 7187923c211855f42ad6ee275b8ebfb0, type: 3}
-  bulletSpeed: 7
+  bulletTimer: 0
+  magnetBulletFired: 0
+  secondMagnetBulletFired: 0
+  mBullet: {fileID: 6060131966879193421, guid: b8eb15da791b69042b9aa73d41125b8e, type: 3}
+  mBulletInstance: {fileID: 0}
+  mBulletInstance2: {fileID: 0}
+  isGrappling: 0
+  touchesGrapple: 0
   gunPos: {fileID: 1241485036294960550}
   animator: {fileID: 251046391206343916}
 --- !u!114 &306339102
@@ -355,5 +363,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.06, y: 4.91}
+  m_Size: {x: 3.7, y: 5.3}
   m_Direction: 0

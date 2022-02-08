@@ -33,11 +33,21 @@ public class PlayerMovement : MonoBehaviour
     public bool Ice = false;
     public bool Gun = false;
 
-    private bool hasFired = false;
     public Bullet bullet;
+    private bool hasFired = false;
     public Sprite iceSprite;
     private Vector3 shootTargetPos;
-    public float bulletSpeed;
+    private float bulletSpeed = 15f;
+    public int bulletTimer; // Countdown timer for bullets
+
+    public bool magnetBulletFired; // prevent multiple magnet bullets
+    public bool secondMagnetBulletFired;
+    public MagnetBullet mBullet;
+    public MagnetBullet mBulletInstance;
+    public MagnetBullet mBulletInstance2;
+    public bool isGrappling;
+    public bool touchesGrapple;
+    private Vector2 previousGrappleVelocity = new Vector2(1f, 1f);
 
     public GameObject gunPos;
     
@@ -62,7 +72,9 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        
+        if (bulletTimer > 0)
+            bulletTimer--;
+
         if (effectDeleteTimer > -1 && effectDeleteTimer < 0)
         {
             Destroy(doubleJumpEffect);
@@ -108,13 +120,50 @@ public class PlayerMovement : MonoBehaviour
     {
         onGround = touchesGround();
 
-        if (!attractedToMetal)
-            rotatePlayer();
+        if (attractedToMetal)
+            onGround = true;
         else
+            rotatePlayer();
+
+        if (isGrappling)
+        {
             onGround = true;
 
+            // Move player
+            if (touchesGrapple == false)
+            {
+                // Player can shoot magnet inside the wall. Force touching the grapple in such cases
+                Debug.Log("x: " + previousGrappleVelocity.x + " y: " + previousGrappleVelocity.y);
+                if (bulletTimer == 0)
+                    if (-0.001f < previousGrappleVelocity.x - rb.velocity.x && previousGrappleVelocity.x - rb.velocity.x < 0.001f &&
+                        -0.001f < previousGrappleVelocity.y - rb.velocity.y && previousGrappleVelocity.y - rb.velocity.y < 0.001f)
+                        touchesGrapple = true;
 
-        moveHorizontally();
+                previousGrappleVelocity = rb.velocity;
+                Vector2 finalPos = new Vector2(mBulletInstance.transform.position.x, mBulletInstance.transform.position.y);
+                Vector2 initialPos = new Vector2(transform.position.x, transform.position.y);
+                Vector2 unitForce = new Vector2(finalPos.x - initialPos.x, finalPos.y - initialPos.y);
+                unitForce.Normalize();
+                rb.velocity = unitForce * 10f;
+            }
+            else
+            {
+                rb.constraints |= RigidbodyConstraints2D.FreezePosition;
+            }
+
+
+            // Stop grappling
+            if (hasJumped || magnetBoots || rocketBoots)
+            {
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePosition;
+                touchesGrapple = false;
+                mBulletInstance.DestroyMagnetBullet();
+                isGrappling = false;
+                secondMagnetBulletFired = false;
+            }
+        }
+        else
+            moveHorizontally();
 
         //Jump/doublejump physics
         if (onGround)
@@ -389,6 +438,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (isGrappling && other.gameObject.name == "Bullet Magnet(Clone)")
+            touchesGrapple = true;
+
         if (other.gameObject.CompareTag("Ice"))
             icy = true;
 
@@ -406,14 +458,42 @@ public class PlayerMovement : MonoBehaviour
     private void Shoot()
     {
         shootTargetPos.Normalize();
-        Debug.Log("ShootVector: " + shootTargetPos);
-        Bullet bulletItem = Instantiate(bullet, gunPos.transform.position, transform.rotation) as Bullet;        
-        bulletItem.rb.velocity = shootTargetPos * bulletSpeed; // Change multiplier to a suitable bullet speed
-        if (fireBullet) {
+        //Debug.Log("ShootVector: " + shootTargetPos);
+
+        // Magnet bullet
+        if (magnetBullet && magnetBulletFired == false) // First bullet
+        {
+            magnetBulletFired = true;
+            mBulletInstance = Instantiate(mBullet, gunPos.transform.position, gunPos.transform.rotation) as MagnetBullet;
+            mBulletInstance.rb.velocity = shootTargetPos * bulletSpeed;
+            mBulletInstance.pM = this;
+        }
+        else if (magnetBullet && touchesGrapple && secondMagnetBulletFired == false) // Second bullet
+        {
+            secondMagnetBulletFired = true;
+            mBulletInstance2 = Instantiate(mBullet, gunPos.transform.position, gunPos.transform.rotation) as MagnetBullet;
+            mBulletInstance2.rb.velocity = shootTargetPos * bulletSpeed;
+            mBulletInstance2.pM = this;
+        }
+
+        // Fire and ice bullet
+        else if (!magnetBullet)
+        {
+            Bullet bulletItem = Instantiate(bullet, gunPos.transform.position, transform.rotation) as Bullet;
+            bulletItem.rb.velocity = shootTargetPos * bulletSpeed;
+        }
+
+        // Sounds
+        if (fireBullet)
+        {
             if (null != _audio) _audio.Play("ShootFire");
-        } else if (iceBullet) {
+        }
+        else if (iceBullet)
+        {
             if (null != _audio) _audio.Play("ShootIce");
-        } else {
+        }
+        else // magnet bullet
+        {
             if (null != _audio) _audio.Play("ShootFire");
         }
     }
