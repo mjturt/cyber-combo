@@ -314,6 +314,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f60c314b2d7494c4c84544d32e6391fc, type: 2}
+    - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8594683809881388219, guid: f60c314b2d7494c4c84544d32e6391fc, type: 2}
     - target: {fileID: 9061422603792790780, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
