@@ -8,17 +8,23 @@ public class MagnetBullet : MonoBehaviour
     private Vector3 initialLocation;
     public PlayerMovement pM;
     private AudioManager _audio;
+    private LineRenderer rope;
+    private Transform ropeEndPoint;
+    private Transform ropeStartPoint;
     // Start is called before the first frame update
     void Start()
     {
         initialLocation = rb.position;
-        //pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
+        rope = GetComponent<LineRenderer>();
+        ropeEndPoint = transform.GetChild(0);
+        ropeStartPoint = pM.gameObject.transform.Find("Gun");
         _audio = FindObjectOfType<AudioManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject target = collision.gameObject;
+
         // Players can't shoot themselves nor enemy bullets
         if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet"))
         {
@@ -69,9 +75,12 @@ public class MagnetBullet : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        rope.SetPosition(0, ropeStartPoint.position);
+        rope.SetPosition(1, ropeEndPoint.position);
+
+        // Destroy offscreen bullets
         if (!stillOnScreen())
         {
             if (pM.secondMagnetBulletFired)

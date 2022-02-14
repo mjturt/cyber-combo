@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
             if (touchesGrapple == false)
             {
                 // Player can shoot magnet inside the wall. Force touching the grapple in such cases
-                Debug.Log("x: " + previousGrappleVelocity.x + " y: " + previousGrappleVelocity.y);
+                //Debug.Log("x: " + previousGrappleVelocity.x + " y: " + previousGrappleVelocity.y);
                 if (bulletTimer == 0)
                     if (-0.001f < previousGrappleVelocity.x - rb.velocity.x && previousGrappleVelocity.x - rb.velocity.x < 0.001f &&
                         -0.001f < previousGrappleVelocity.y - rb.velocity.y && previousGrappleVelocity.y - rb.velocity.y < 0.001f)
