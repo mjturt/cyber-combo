@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite iceSprite;
     private Vector3 shootTargetPos;
     private float bulletSpeed = 15f;
-    public int bulletTimer; // Countdown timer for bullets
+
 
     public bool magnetBulletFired; // prevent multiple magnet bullets
     public bool secondMagnetBulletFired;
@@ -47,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
     public MagnetBullet mBulletInstance2;
     public bool isGrappling;
     public bool touchesGrapple;
-    private Vector2 previousGrappleVelocity = new Vector2(1f, 1f);
 
     public GameObject gunPos;
     
@@ -72,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        if (bulletTimer > 0)
-            bulletTimer--;
 
         if (effectDeleteTimer > -1 && effectDeleteTimer < 0)
         {
@@ -132,14 +129,6 @@ public class PlayerMovement : MonoBehaviour
             // Move player
             if (touchesGrapple == false)
             {
-                // Player can shoot magnet inside the wall. Force touching the grapple in such cases
-                //Debug.Log("x: " + previousGrappleVelocity.x + " y: " + previousGrappleVelocity.y);
-                if (bulletTimer == 0)
-                    if (-0.001f < previousGrappleVelocity.x - rb.velocity.x && previousGrappleVelocity.x - rb.velocity.x < 0.001f &&
-                        -0.001f < previousGrappleVelocity.y - rb.velocity.y && previousGrappleVelocity.y - rb.velocity.y < 0.001f)
-                        touchesGrapple = true;
-
-                previousGrappleVelocity = rb.velocity;
                 Vector2 finalPos = new Vector2(mBulletInstance.transform.position.x, mBulletInstance.transform.position.y);
                 Vector2 initialPos = new Vector2(transform.position.x, transform.position.y);
                 Vector2 unitForce = new Vector2(finalPos.x - initialPos.x, finalPos.y - initialPos.y);

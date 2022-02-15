@@ -28,17 +28,16 @@ public class MagnetBullet : MonoBehaviour
         // Players can't shoot themselves nor enemy bullets
         if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet"))
         {
-            if (!target.CompareTag("Metal"))
+            if (!target.CompareTag("Metal") && !(pM.isGrappling == true && pM.touchesGrapple == false))
             {
-                Destroy(this.gameObject);
                 if (pM.secondMagnetBulletFired)
                     pM.secondMagnetBulletFired = false;
                 else
                     pM.magnetBulletFired = false;
+                Destroy(this.gameObject);
             }
             else // Bullet hit metal
             {
-                pM.bulletTimer = 5; // use timer to keep some record of previous grapple speed
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 rb.velocity = new Vector2(0f, 0f);
                 pM.isGrappling = true;
