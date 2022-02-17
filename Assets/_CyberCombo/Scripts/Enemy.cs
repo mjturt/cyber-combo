@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour {
     protected bool frozen = false;
 
     protected SpriteRenderer sprite;
+
+    private Vector3 scale;
     
     //Walk Width defines how far enemy goes from left wall
     public float walkWidth;
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         gunCoolDown = rateOfFire;
         _audio = FindObjectOfType<AudioManager>();
+        scale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -48,12 +51,12 @@ public class Enemy : MonoBehaviour {
             
             if (walkingDirection > 0.0f && transform.position.x > wallRight) {
                 walkingDirection = -1.0f;
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
 
             } else if (walkingDirection < 0.0f && transform.position.x < wallLeft)
             {
                 walkingDirection = 1.0f;
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(scale.x, scale.y, scale.z);
             }
             transform.Translate(walkAmount);
 
