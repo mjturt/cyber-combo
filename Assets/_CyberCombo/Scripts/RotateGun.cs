@@ -35,16 +35,72 @@ public class RotateGun : MonoBehaviour
         mouse_pos.x = mouse_pos.x - object_pos.x;
         mouse_pos.y = mouse_pos.y - object_pos.y;
         angle = Mathf.Atan2(mouse_pos.y, mouse_pos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler( new Vector3(0, 0, angle));
-        if (angle < -90f || angle > 90f)
+        
+        
+        //Normal player rotation
+        if (playerPos.rotation.z < 0.05 && playerPos.rotation.z > -0.05)
         {
-            gunSprite.flipY = true;
-            transform.position = new Vector3(playerPos.position.x - 0.2f, playerPos.position.y,0);
+            transform.rotation = Quaternion.Euler( new Vector3(0, 0, angle));
+            gunSprite.flipX = false;
+            if (angle < -90f || angle > 90f)
+            {
+                gunSprite.flipY = true;
+                transform.position = new Vector3(playerPos.position.x - 0.2f, playerPos.position.y, 0);
+            }
+            else
+            {
+                gunSprite.flipY = false;
+                transform.position = new Vector3(playerPos.position.x + 0.2f, playerPos.position.y, 0);
+            }
         }
-        else
+        //Player upside down
+        else if(playerPos.rotation.z < -0.95 || playerPos.rotation.z > 0.95)
         {
-            gunSprite.flipY = false;
-            transform.position = new Vector3(playerPos.position.x + 0.2f, playerPos.position.y,0);
+            transform.rotation = Quaternion.Euler( new Vector3(0, 0, angle));
+            gunSprite.flipX = true;
+            if (angle < -90f || angle > 90f)
+            {
+                gunSprite.flipY = false;
+                transform.position = new Vector3(playerPos.position.x + 0.2f, playerPos.position.y, 0);
+            }
+            else
+            {
+                gunSprite.flipY = true;
+                transform.position = new Vector3(playerPos.position.x - 0.2f, playerPos.position.y, 0);
+            }
         }
+        //Player sideways +90 degree
+        else if(playerPos.rotation.z < 0.95 && playerPos.rotation.z > 0.05)
+        {
+            transform.rotation = Quaternion.Euler( new Vector3(0, 0, angle +90f));
+            gunSprite.flipX = false;
+            if (angle < -90f || angle > 90f)
+            {
+                gunSprite.flipY = true;
+                transform.position = new Vector3(playerPos.position.x, playerPos.position.y - 0.2f, 0);
+            }
+            else
+            {
+                gunSprite.flipY = false;
+                transform.position = new Vector3(playerPos.position.x, playerPos.position.y + 0.2f, 0);
+            }
+        }
+        //Player sideways -90 degree
+        else if(playerPos.rotation.z > -0.95 || playerPos.rotation.z < -0.05)
+        {
+            transform.rotation = Quaternion.Euler( new Vector3(0, 0, angle +90f));
+            gunSprite.flipX = true;
+            if (angle < -90f || angle > 90f)
+            {
+                gunSprite.flipY = false;
+                transform.position = new Vector3(playerPos.position.x, playerPos.position.y + 0.2f, 0);
+            }
+            else
+            {
+                gunSprite.flipY = true;
+                transform.position = new Vector3(playerPos.position.x, playerPos.position.y - 0.2f, 0);
+            }
+        }
+        
     }
 }
