@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
     public float walkSpeed = 1.0f;      // Walkspeed
-    private float wallLeft = 0.0f;       // Define wallLeft
-    private float wallRight = 5.0f;      // Define wallRight
     protected float walkingDirection = 1.0f;
     Vector2 walkAmount;
 
@@ -21,45 +19,77 @@ public class Enemy : MonoBehaviour {
     protected bool frozen = false;
 
     protected SpriteRenderer sprite;
-
-    private Vector3 scale;
     
-    //Walk Width defines how far enemy goes from left wall
-    public float walkWidth;
-
     private AudioManager _audio;
 
-
     void Start () {
-        wallLeft = transform.position.x;
-        wallRight = transform.position.x + walkWidth;
         sprite = GetComponent<SpriteRenderer>();
         gunCoolDown = rateOfFire;
         _audio = FindObjectOfType<AudioManager>();
-        scale = transform.localScale;
     }
 
-    // Update is called once per frame
     void Update () {
         if (!permaFrost && frozen && timeToMelt < 0)
         {
             UnFreeze();
         }
         else if (!frozen)
-        { 
-            walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
-            
-            if (walkingDirection > 0.0f && transform.position.x > wallRight) {
-                walkingDirection = -1.0f;
-                transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+        {
+            bool turnAround = false;
 
-            } else if (walkingDirection < 0.0f && transform.position.x < wallLeft)
+            // Check for obstacle
+            BoxCollider2D bc = transform.GetComponent<BoxCollider2D>();
+            RaycastHit2D[] results = new RaycastHit2D[5];
+            int hitCount = Physics2D.BoxCastNonAlloc(bc.bounds.center, new Vector2(bc.bounds.size.x, bc.bounds.size.y * 0.9f), // 0.9f to avoid detecting floor as wall when falling
+                                                        0f, new Vector2(walkingDirection, 0), results, 0.1f);
+
+            for (int i = 0; i < hitCount; i++)
             {
-                walkingDirection = 1.0f;
-                transform.localScale = new Vector3(scale.x, scale.y, scale.z);
+                if (results[i].transform) // Hits something
+                {
+                    string name = results[i].transform.name;
+                    if (name.Equals("Metal") || name.Equals("Ice") || name.Equals("Lava") || name.Equals("GroundMap") || (name.Contains("Turret") && !name.Contains("bullet")))
+                        turnAround = true;
+                    else if ((results[i].transform.tag == "Danger" || results[i].transform.tag == "Frozen") && name != transform.name && !transform.name.ToLower().Contains("bullet"))
+                    {
+                        turnAround = true;
+                    }
+                }
             }
+
+            // Check for fall
+            Collider2D[] fallResults = new Collider2D[5];
+            Physics2D.OverlapBoxNonAlloc(new Vector2(bc.bounds.center.x + bc.bounds.size.x * walkingDirection * 0.75f, bc.bounds.center.y - bc.bounds.size.y / 2), new Vector2(bc.bounds.size.x * 0.25f, bc.bounds.size.y * 0.25f), 0f, fallResults);
+
+            bool onGround = false;
+            for (int i = 0; i < fallResults.Length; i++)
+            {
+                Debug.Log(i + " " + fallResults[i]);
+                if (fallResults[i] && fallResults[i].transform) // Hits something
+                {
+                    if (fallResults[i].isTrigger == false)
+                        onGround = true;
+                }
+            }
+
+            if (onGround == false)
+            {
+                if (transform.GetComponent<Rigidbody2D>().velocity.y == 0f)
+                {
+                    turnAround = true;
+                }
+            }
+
+            // Move
+            walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
             transform.Translate(walkAmount);
 
+            // Turn
+            // Turning is done after moving to make sure that colliding enemies both change direction
+            if (turnAround)
+                TurnAround();
+
+            // Shoot
             this.gunCoolDown = this.gunCoolDown - Time.deltaTime;            
             if (canShoot && 0 > gunCoolDown)
             {
@@ -67,11 +97,17 @@ public class Enemy : MonoBehaviour {
                 this.gunCoolDown = rateOfFire;            
             }
         }
-        else
+        else // Melt
         {
             this.timeToMelt = this.timeToMelt - Time.deltaTime;
         }
 
+    }
+
+    public void TurnAround()
+    {
+        walkingDirection *= -1;
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * walkingDirection, transform.localScale.y, transform.localScale.z);
     }
 
     protected void Shoot()
