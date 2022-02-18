@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour {
                 Debug.Log(i + " " + fallResults[i]);
                 if (fallResults[i] && fallResults[i].transform) // Hits something
                 {
-                    if (fallResults[i].isTrigger == false)
+                    if (fallResults[i].isTrigger == false && fallResults[i].transform.tag != "Danger")
                         onGround = true;
                 }
             }
