@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour {
     protected SpriteRenderer sprite;
     
     private AudioManager _audio;
-
+    
     void Start () {
         sprite = GetComponent<SpriteRenderer>();
         gunCoolDown = rateOfFire;
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour {
                 if (results[i].transform) // Hits something
                 {
                     string name = results[i].transform.name;
-                    if (name.Equals("Metal") || name.Equals("Ice") || name.Equals("Lava") || name.Equals("GroundMap") || (name.Contains("Turret") && !name.Contains("bullet")))
+                    if (name.Equals("Metal") || name.Equals("Ice") || name.Equals("Lava") || name.Contains("Ground") || (name.Contains("Turret") && !name.Contains("bullet")))
                         turnAround = true;
                     else if ((results[i].transform.tag == "Danger" || results[i].transform.tag == "Frozen") && name != transform.name && !transform.name.ToLower().Contains("bullet"))
                     {
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour {
 
             // Check for fall
             Collider2D[] fallResults = new Collider2D[5];
-            Physics2D.OverlapBoxNonAlloc(new Vector2(bc.bounds.center.x + bc.bounds.size.x * walkingDirection * 0.75f, bc.bounds.center.y - bc.bounds.size.y / 2), new Vector2(bc.bounds.size.x * 0.25f, bc.bounds.size.y * 0.25f), 0f, fallResults);
+            Physics2D.OverlapBoxNonAlloc(new Vector2(bc.bounds.center.x + bc.bounds.size.x * walkingDirection * 0.75f, bc.bounds.center.y - bc.bounds.size.y / 2), new Vector2(bc.bounds.size.x * 0.25f, 0.25f), 0f, fallResults);
 
             bool onGround = false;
             for (int i = 0; i < fallResults.Length; i++)
