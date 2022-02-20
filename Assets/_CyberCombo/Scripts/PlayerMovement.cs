@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
     private AudioSource walkingSource;
     public Animator animator;
+
+    public bool inputEnabled;
     
     void Start()
     {
@@ -97,14 +99,14 @@ public class PlayerMovement : MonoBehaviour
         moveRight = Input.GetAxisRaw("Horizontal") > 0;
 
         //Jump animations and triggers
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && inputEnabled)
         {
             hasJumped = true;
             
         }
 
         // Shooting
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && inputEnabled)
         {
             hasFired = true;
             shootTargetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -290,28 +292,28 @@ public class PlayerMovement : MonoBehaviour
         if (attractedToMetal)
         {
             float magneticSpeedMultiplier = 0.7f;
-            if (moveRight)
+            if (moveRight && inputEnabled)
             {
                 if (rb.transform.right.x * rb.velocity.x + rb.transform.right.y * rb.velocity.y < -1f)
                     rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y * 0.75f);
                 else if (rb.transform.right.x * rb.velocity.x + rb.transform.right.y * rb.velocity.y < maximumSpeed)
                     rb.AddRelativeForce(new Vector2(accelerationSpeed * magneticSpeedMultiplier, 0));
             }
-            else if (moveLeft)
+            else if (moveLeft && inputEnabled)
             {
                 if (-rb.transform.right.x * rb.velocity.x + -rb.transform.right.y * rb.velocity.y < -1f)
                     rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y * 0.75f);
                 else if (-rb.transform.right.x * rb.velocity.x + -rb.transform.right.y * rb.velocity.y < maximumSpeed)
                     rb.AddRelativeForce(new Vector2(-accelerationSpeed * magneticSpeedMultiplier, 0));
             }
-            else
+            else if (!moveRight && !moveLeft)
             {
                 rb.velocity = new Vector2(rb.velocity.x * 0.75f, rb.velocity.y * 0.75f);
             }
         }
 
         // Non magnetic movement
-        else if (moveLeft || moveRight) // accelerate
+        else if ((moveLeft || moveRight) && inputEnabled) // accelerate
         {
             if (!onGround) // air
             {

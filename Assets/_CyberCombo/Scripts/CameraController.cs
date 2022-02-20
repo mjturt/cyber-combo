@@ -47,11 +47,10 @@ public class CameraController : MonoBehaviour
             playerCam.enabled = false;
             fullCam.enabled = true;
             
-            pM.enabled = false;
             //pM.accelerationSpeed = 0;
             //pM.jumpForce = 0;
             rb.velocity = new Vector2(0, 0);
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            pM.inputEnabled = false;
             anim.enabled = false;
         }
         if(Input.GetKeyUp(KeyCode.C))
@@ -59,10 +58,9 @@ public class CameraController : MonoBehaviour
             playerCam.enabled = true;
             fullCam.enabled = false;
             
-            pM.enabled = true;
             //pM.accelerationSpeed = 120f;
             //pM.jumpForce = 500f;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            pM.inputEnabled = true;
             anim.enabled = true;
         }
     }

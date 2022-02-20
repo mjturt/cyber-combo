@@ -270,7 +270,6 @@ MonoBehaviour:
   Gun: 1
   bullet: {fileID: 4448461232293891551, guid: e1003b1734d31da4a94150e1266441c3, type: 3}
   iceSprite: {fileID: 21300000, guid: 7187923c211855f42ad6ee275b8ebfb0, type: 3}
-  bulletTimer: 0
   magnetBulletFired: 0
   secondMagnetBulletFired: 0
   mBullet: {fileID: 6060131966879193421, guid: b8eb15da791b69042b9aa73d41125b8e, type: 3}
@@ -280,6 +279,7 @@ MonoBehaviour:
   touchesGrapple: 0
   gunPos: {fileID: 1241485036294960550}
   animator: {fileID: 251046391206343916}
+  inputEnabled: 1
 --- !u!114 &306339102
 MonoBehaviour:
   m_ObjectHideFlags: 0
