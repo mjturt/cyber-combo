@@ -30,7 +30,7 @@ public class MagnetBullet : MonoBehaviour
         {
             if (!target.CompareTag("Metal") && !(pM.isGrappling == true && pM.touchesGrapple == false))
             {
-                if (pM.secondMagnetBulletFired)
+                if (pM.mBulletInstance2 == this)
                     pM.secondMagnetBulletFired = false;
                 else
                     pM.magnetBulletFired = false;
