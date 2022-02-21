@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour {
 
             if (onGround == false)
             {
-                if (transform.GetComponent<Rigidbody2D>().velocity.y == 0f)
+                if (transform.GetComponent<Rigidbody2D>().velocity.y < 0.0001f && transform.GetComponent<Rigidbody2D>().velocity.y > -0.0001f)
                 {
                     turnAround = true;
                 }
