@@ -76,10 +76,16 @@ public class LevelEnabler : MonoBehaviour
                 if (lineIndex < linesToActivate)
                 {
                     // Bold
-                    if (rect.sizeDelta.x == 5)
-                        rect.sizeDelta = new Vector2(lineWidthUnlocked, rect.sizeDelta.y);
+                    if (rect.anchorMax.x - rect.anchorMin.x > rect.anchorMax.y - rect.anchorMin.y)
+                    {
+                        rect.anchorMin = new Vector2(rect.anchorMin.x, (rect.anchorMax.y + rect.anchorMin.y) / 2 - lineWidthUnlocked / 200);
+                        rect.anchorMax = new Vector2(rect.anchorMax.x, (rect.anchorMax.y + rect.anchorMin.y) / 2 + lineWidthUnlocked / 200);
+                    }
                     else
-                        rect.sizeDelta = new Vector2(rect.sizeDelta.x, lineWidthUnlocked);
+                    {
+                        rect.anchorMin = new Vector2((rect.anchorMax.x + rect.anchorMin.x) / 2 - lineWidthUnlocked / 360, rect.anchorMin.y);
+                        rect.anchorMax = new Vector2((rect.anchorMax.x + rect.anchorMin.x) / 2 + lineWidthUnlocked / 360, rect.anchorMax.y);
+                    }
 
                     // Color
                     if (lineIndex < 4)
