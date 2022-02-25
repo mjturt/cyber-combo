@@ -192,10 +192,11 @@ public class PlayerMovement : MonoBehaviour
 
         // Shooting
         if (hasFired && Gun)
-        {            
-            hasFired = false;
+        {
             Shoot();
         }
+        hasFired = false;
+
 
         // Walking sound
         if (_audio != null) {

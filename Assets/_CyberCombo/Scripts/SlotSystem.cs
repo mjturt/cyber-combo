@@ -6,13 +6,12 @@ using Image = UnityEngine.UI.Image;
 
 public class SlotSystem : MonoBehaviour
 {
-    public Image[] imgs;
-    private Image uImg1;
-    private Image uImg2;
-    private Image uImg3;
-    private Image dImg1;
-    private Image dImg2;
-    private Image dImg3;
+    public GameObject fire1;
+    public GameObject ice1;
+    public GameObject magnet1;
+    public GameObject fire2;
+    public GameObject ice2;
+    public GameObject magnet2;
 
     private PlayerMovement pM;
     private RotateGun rG;
@@ -24,17 +23,18 @@ public class SlotSystem : MonoBehaviour
     
     void Start()
     {
-        imgs = GetComponentsInChildren<Image>();
-        uImg1 = imgs[2];
-        uImg2 = imgs[3];
-        uImg3 = imgs[4];
-        dImg1 = imgs[8];
-        dImg2 = imgs[9];
-        dImg3 = imgs[10];
-
         //pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         rG = GameObject.Find("/Player").GetComponentInChildren<RotateGun>();
+
+        if (pM)
+        {
+            if (pM.Fire)
+                transform.GetChild(0).gameObject.SetActive(true);
+
+            if (pM.Gun)
+                transform.GetChild(1).gameObject.SetActive(true);
+        }
 
         _audio = FindObjectOfType<AudioManager>();
     }
@@ -64,63 +64,49 @@ public class SlotSystem : MonoBehaviour
                 switch (uClickCount % 3)
                 {
                     case 0:
-                        uImg1.enabled = false;
-                        uImg2.enabled = false;
-                        uImg3.enabled = true;
+                        magnet1.SetActive(false);
+                        fire1.SetActive(true);
 
-                        pM.rocketBoots = true;
-                        pM.iceBoots = false;
                         pM.magnetBoots = false;
+                        pM.rocketBoots = true;
 
-                        dImg1.enabled = true;
-                        dImg2.enabled = false;
-                        dImg3.enabled = false;
+                        ice2.SetActive(true);
+                        fire2.SetActive(false);
 
                         pM.iceBullet = true;
-                        pM.magnetBullet = false;
                         pM.fireBullet = false;
 
                         rG.gunSprite.sprite = rG.iceSprite;
-                        Debug.Log("ice");
                         break;
                     case 1:
-                        uImg1.enabled = true;
-                        uImg2.enabled = false;
-                        uImg3.enabled = false;
+                        fire1.SetActive(false);
+                        ice1.SetActive(true);
 
                         pM.rocketBoots = false;
                         pM.iceBoots = true;
-                        pM.magnetBoots = false;
 
-                        dImg1.enabled = false;
-                        dImg2.enabled = true;
-                        dImg3.enabled = false;
+                        ice2.SetActive(false);
+                        magnet2.SetActive(true);
 
                         pM.iceBullet = false;
                         pM.magnetBullet = true;
-                        pM.fireBullet = false;
-                        
+
                         rG.gunSprite.sprite = rG.magnetSprite;
                         break;
                     case 2:
-                        uImg1.enabled = false;
-                        uImg2.enabled = true;
-                        uImg3.enabled = false;
+                        ice1.SetActive(false);
+                        magnet1.SetActive(true);
 
-                        pM.rocketBoots = false;
                         pM.iceBoots = false;
                         pM.magnetBoots = true;
 
-                        dImg1.enabled = false;
-                        dImg2.enabled = false;
-                        dImg3.enabled = true;
+                        magnet2.SetActive(false);
+                        fire2.SetActive(true);
 
-                        pM.iceBullet = false;
                         pM.magnetBullet = false;
                         pM.fireBullet = true;
                         
                         rG.gunSprite.sprite = rG.fireSprite;
-                        Debug.Log("fire");
                         break;
                 }
             }
@@ -131,30 +117,30 @@ public class SlotSystem : MonoBehaviour
                 switch (uClickCount % 2)
                 {
                     case 1:
-                        uImg1.enabled = true;
-                        uImg3.enabled = false;
-
-                        dImg1.enabled = false;
-                        dImg3.enabled = true;
+                        fire1.SetActive(false);
+                        ice1.SetActive(true);
 
                         pM.rocketBoots = false;
                         pM.iceBoots = true;
 
-                        pM.fireBullet = true;
+                        ice2.SetActive(false);
+                        fire2.SetActive(true);
+
                         pM.iceBullet = false;
+                        pM.fireBullet = true;
                         
                         rG.gunSprite.sprite = rG.fireSprite;
                         Debug.Log("fire");
                         break;
                     case 0:
-                        uImg1.enabled = false;
-                        uImg3.enabled = true;
+                        ice1.SetActive(false);
+                        fire1.SetActive(true);
 
-                        dImg1.enabled = true;
-                        dImg3.enabled = false;
-
-                        pM.rocketBoots = true;
                         pM.iceBoots = false;
+                        pM.rocketBoots = true;
+
+                        fire2.SetActive(false);
+                        ice2.SetActive(true);
 
                         pM.fireBullet = false;
                         pM.iceBullet = true;
@@ -172,52 +158,20 @@ public class SlotSystem : MonoBehaviour
                 switch (uClickCount % 2)
                 {
                     case 1:
-                        uImg1.enabled = true;
-                        uImg3.enabled = false;
+                        fire1.SetActive(false);
+                        ice1.SetActive(true);
 
                         pM.rocketBoots = false;
                         pM.iceBoots = true;
+
                         break;
                     case 0:
-                        uImg1.enabled = false;
-                        uImg3.enabled = true;
+                        ice1.SetActive(false);
+                        fire1.SetActive(true);
 
-                        pM.rocketBoots = true;
                         pM.iceBoots = false;
-                        break;
-                }
-            }
-        }
-        //Second row logic
-        if (Input.GetKeyDown(KeyCode.E) && pM.onGround && pM.inputEnabled)
-        {
-            dClickCount++;
+                        pM.rocketBoots = true;
 
-            if (pM.Fire && pM.Ice && pM.Magnet)
-            {
-                //Skip element if its already assigned to other slot
-                if (dClickCount % 3 == uClickCount % 3)
-                {
-                    dClickCount++;
-                }
-
-                if (_audio != null) _audio.Play("ChangeItem");
-                switch (dClickCount % 3)
-                {
-                    case 0:
-                        dImg1.enabled = true;
-                        dImg2.enabled = false;
-                        dImg3.enabled = false;
-                        break;
-                    case 1:
-                        dImg1.enabled = false;
-                        dImg2.enabled = true;
-                        dImg3.enabled = false;
-                        break;
-                    case 2:
-                        dImg1.enabled = false;
-                        dImg2.enabled = false;
-                        dImg3.enabled = true;
                         break;
                 }
             }

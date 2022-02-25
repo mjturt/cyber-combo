@@ -23,12 +23,12 @@ public class Collectible : MonoBehaviour
     
     
     void Start()
-   {
-       pMovement = GetComponent<PlayerMovement>();
-       _restart = GetComponent<Restart>();
-       slots = _slotSystem.GetComponent<SlotSystem>();
+    {
+        pMovement = GetComponent<PlayerMovement>();
+        _restart = GetComponent<Restart>();
+        slots = _slotSystem.GetComponent<SlotSystem>();
         _audio = FindObjectOfType<AudioManager>();
-   }
+    }
 
     private void Update()
     {   //Key picking logic
@@ -56,76 +56,71 @@ public class Collectible : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-   {
-       //Handles picking up rocket boots
-       if(other.gameObject.CompareTag("FireElement"))
-       {
-           Destroy(other.gameObject);
-           if (null != _audio) _audio.Play("GetFire");
-           pMovement.Fire = true;
-           _slotSystem.SetActive(true);
-           pMovement.rocketBoots = true;
-       }
-       else if (other.gameObject.CompareTag("IceElement"))
-       {
-           if (null != _audio) _audio.Play("GetIce");
-           Destroy(other.gameObject);
-           pMovement.Ice = true;
-       }
-       else if (other.gameObject.CompareTag("MagnetPickup"))
-       {
-           //if (null != _audio) _audio.Play("GetMagnet");  <----Magnet sounds here...
-           Destroy(other.gameObject);
-           pMovement.Magnet = true;
-       }
+    {
+        //Handles picking up rocket boots
+        if(other.gameObject.CompareTag("FireElement"))
+        {
+            Destroy(other.gameObject);
+            if (null != _audio) _audio.Play("GetFire");
+            pMovement.Fire = true;
+            _slotSystem.SetActive(true);
+            pMovement.rocketBoots = true;
+        }
+        else if (other.gameObject.CompareTag("IceElement"))
+        {
+            if (null != _audio) _audio.Play("GetIce");
+            Destroy(other.gameObject);
+            pMovement.Ice = true;
+        }
+        else if (other.gameObject.CompareTag("MagnetPickup"))
+        {
+            //if (null != _audio) _audio.Play("GetMagnet");  <----Magnet sounds here...
+            Destroy(other.gameObject);
+            pMovement.Magnet = true;
+        }
        
-       //End of level handling
-       else if (other.gameObject.CompareTag("Goal") && _locked == false)
-       {
-           print("You Win!");
-           gameManager.GetComponent<LevelComplete>().LevelCompleted();
+        //End of level handling
+        else if (other.gameObject.CompareTag("Goal") && _locked == false)
+        {
+            print("You Win!");
+            gameManager.GetComponent<LevelComplete>().LevelCompleted();
 
-       }
-       //On key trigger area logic
-       else if(other.gameObject.CompareTag("Key"))
-       {
-           if (null != _audio) _audio.Play("Info");
-           other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-           _canPressButton = true;
-       }
-       //Pop info text
-       else if (other.gameObject.CompareTag("Info"))
-       {
-           if (null != _audio) _audio.Play("Info");
-           other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-       }
-       else if (other.gameObject.CompareTag("Gun"))
-       {
-           if (null != _audio) _audio.Play("GetGun");
-           Destroy(other.gameObject);
-           pMovement.Gun = true;
-           pMovement.gunPos.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        //On key trigger area logic
+        else if(other.gameObject.CompareTag("Key"))
+        {
+            if (null != _audio) _audio.Play("Info");
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            _canPressButton = true;
+        }
+        //Pop info text
+        else if (other.gameObject.CompareTag("Info"))
+        {
+            if (null != _audio) _audio.Play("Info");
+            other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("Gun"))
+        {
+            if (null != _audio) _audio.Play("GetGun");
+            Destroy(other.gameObject);
+            pMovement.Gun = true;
+            pMovement.gunPos.GetComponent<SpriteRenderer>().enabled = true;
 
-           slots.imgs[6].enabled = true; //left white bg
-           slots.imgs[7].enabled = true; //right white bg
-           slots.imgs[11].enabled = true;//line
-           slots.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<RawImage>().enabled = true; //gun
-           
-           if (slots.imgs[2].enabled == false)
+            slots.transform.GetChild(1).gameObject.SetActive(true); //gun
+            
+            // Change icon if necessary
+            if (slots.ice1.activeInHierarchy)
             {
-                slots.imgs[8].enabled = true; //ice power
-                pMovement.iceBullet = true;
-            }
-           else
-            {
-                slots.imgs[10].enabled = true; //fire power
+                slots.ice2.SetActive(false);
+                slots.fire2.SetActive(true);
+                pMovement.iceBullet = false;
                 pMovement.fireBullet = true;
             }
 
         }
        
        
-   }
+    }
 
     private void OnTriggerExit2D(Collider2D other)
     {
