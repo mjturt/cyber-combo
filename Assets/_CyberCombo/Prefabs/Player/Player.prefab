@@ -279,6 +279,9 @@ MonoBehaviour:
   touchesGrapple: 0
   gunPos: {fileID: 1241485036294960550}
   animator: {fileID: 251046391206343916}
+  fireController: {fileID: 22100000, guid: e0b3ce91c41a2f54f8fedea7ac68c4e8, type: 2}
+  iceController: {fileID: 22100000, guid: 8ca6b49200133a04e99ce77f0794d536, type: 2}
+  magnetController: {fileID: 22100000, guid: b2cefff1b5ed0a14fb3ff05764ee78ec, type: 2}
   inputEnabled: 1
 --- !u!114 &306339102
 MonoBehaviour:

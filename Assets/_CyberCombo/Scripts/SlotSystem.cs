@@ -20,17 +20,26 @@ public class SlotSystem : MonoBehaviour
     public int dClickCount = 1;
 
     private AudioManager _audio;
+    private AnimatorOverrideController fireController;
+    private AnimatorOverrideController iceController;
+    private AnimatorOverrideController magnetController;
     
     void Start()
     {
         //pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
         rG = GameObject.Find("/Player").GetComponentInChildren<RotateGun>();
+        fireController = pM.fireController;
+        iceController = pM.iceController;
+        magnetController = pM.magnetController;
 
         if (pM)
         {
             if (pM.Fire)
+            {
                 transform.GetChild(0).gameObject.SetActive(true);
+                pM.animator.runtimeAnimatorController = fireController;
+            }
 
             if (pM.Gun)
                 transform.GetChild(1).gameObject.SetActive(true);
@@ -77,6 +86,9 @@ public class SlotSystem : MonoBehaviour
                         pM.fireBullet = false;
 
                         rG.gunSprite.sprite = rG.iceSprite;
+
+                        pM.animator.runtimeAnimatorController = fireController;
+                        
                         break;
                     case 1:
                         fire1.SetActive(false);
@@ -92,6 +104,8 @@ public class SlotSystem : MonoBehaviour
                         pM.magnetBullet = true;
 
                         rG.gunSprite.sprite = rG.magnetSprite;
+                        
+                        pM.animator.runtimeAnimatorController = iceController;
                         break;
                     case 2:
                         ice1.SetActive(false);
@@ -107,6 +121,8 @@ public class SlotSystem : MonoBehaviour
                         pM.fireBullet = true;
                         
                         rG.gunSprite.sprite = rG.fireSprite;
+                        
+                        pM.animator.runtimeAnimatorController = magnetController;
                         break;
                 }
             }
@@ -130,6 +146,8 @@ public class SlotSystem : MonoBehaviour
                         pM.fireBullet = true;
                         
                         rG.gunSprite.sprite = rG.fireSprite;
+                        
+                        pM.animator.runtimeAnimatorController = iceController;
                         Debug.Log("fire");
                         break;
                     case 0:
@@ -146,6 +164,9 @@ public class SlotSystem : MonoBehaviour
                         pM.iceBullet = true;
                         
                         rG.gunSprite.sprite = rG.iceSprite;
+                        
+                        pM.animator.runtimeAnimatorController = fireController;
+                        
                         Debug.Log("ice");
                         break;
                 }
@@ -163,6 +184,8 @@ public class SlotSystem : MonoBehaviour
 
                         pM.rocketBoots = false;
                         pM.iceBoots = true;
+                        
+                        pM.animator.runtimeAnimatorController = iceController;
 
                         break;
                     case 0:
@@ -171,6 +194,8 @@ public class SlotSystem : MonoBehaviour
 
                         pM.iceBoots = false;
                         pM.rocketBoots = true;
+                        
+                        pM.animator.runtimeAnimatorController = fireController;
 
                         break;
                 }

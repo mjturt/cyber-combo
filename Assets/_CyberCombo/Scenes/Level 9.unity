@@ -23575,6 +23575,18 @@ PrefabInstance:
       propertyPath: fireBullet
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: iceController
+      value: 
+      objectReference: {fileID: 22100000, guid: 8ca6b49200133a04e99ce77f0794d536, type: 2}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: fireController
+      value: 
+      objectReference: {fileID: 22100000, guid: e0b3ce91c41a2f54f8fedea7ac68c4e8, type: 2}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: magnetController
+      value: 
+      objectReference: {fileID: 22100000, guid: b2cefff1b5ed0a14fb3ff05764ee78ec, type: 2}
     - target: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_Name
       value: Player

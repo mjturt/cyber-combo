@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
     private AudioSource walkingSource;
     public Animator animator;
+    public AnimatorOverrideController fireController;
+    public AnimatorOverrideController iceController;
+    public AnimatorOverrideController magnetController;
 
     public bool inputEnabled;
     
