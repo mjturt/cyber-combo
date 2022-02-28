@@ -22828,14 +22828,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 671477894766349026, guid: 15be074870a0fc144abbb5856a27a7e9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 671477894766349026, guid: 15be074870a0fc144abbb5856a27a7e9, type: 3}
-      propertyPath: m_TagString
-      value: MainCamera
-      objectReference: {fileID: 0}
     - target: {fileID: 671477894766349029, guid: 15be074870a0fc144abbb5856a27a7e9, type: 3}
       propertyPath: m_Enabled
       value: 1
