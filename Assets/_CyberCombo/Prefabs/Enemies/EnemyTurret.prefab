@@ -134,7 +134,6 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 5884232845331754422}
   freezeTimer: 10
   permaFrost: 0
-  walkWidth: 0
   facing: -1
 --- !u!1 &2953110968938596109
 GameObject:
