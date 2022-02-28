@@ -11,6 +11,7 @@ public class LevelComplete : MonoBehaviour
     public void LevelCompleted()
     {
         completionScreen.SetActive(true);
+        Time.timeScale = 0f;
 
         AudioManager _audio = FindObjectOfType<AudioManager>();
         if (null != _audio) _audio.Play("LevelComplete");
@@ -18,7 +19,7 @@ public class LevelComplete : MonoBehaviour
         int highestLevel = PlayerPrefs.GetInt("HighestLevel");
         string scene = SceneManager.GetActiveScene().name;
         int currentLevel = int.Parse(scene.Substring(scene.Length - 1));
-        if (highestLevel <= currentLevel && currentLevel < 9) // We will have 9 levels
+        if (highestLevel <= currentLevel && currentLevel < 12) // We will have 12 levels
             PlayerPrefs.SetInt("HighestLevel", currentLevel + 1);
     }
 }
