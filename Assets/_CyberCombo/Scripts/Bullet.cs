@@ -15,9 +15,14 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialLocation = rb.position; 
+        Init();
+    }
+
+    private void Init()
+    {
+        initialLocation = rb.position;
         pM = GameObject.Find("/Player").GetComponent<PlayerMovement>();
-        iceSprite = pM.iceSprite;        
+        iceSprite = pM.iceSprite;
         if (pM.iceBullet)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = iceSprite;
@@ -29,6 +34,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!pM) // Collision is called before Start
+            Init();
+
         GameObject target = collision.gameObject;
         // Players can't shoot themselves nor enemy bullets
         if (!target.name.Equals("Player") && !target.name.ToLower().Contains("bullet"))
