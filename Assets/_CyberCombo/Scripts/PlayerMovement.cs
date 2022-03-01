@@ -127,6 +127,16 @@ public class PlayerMovement : MonoBehaviour
         else
             rotatePlayer();
 
+        // Sometimes manget bullets are destroyed but player movement parameters are not updated
+        // Fix such cases
+        if (!mBulletInstance)
+        {
+            isGrappling = false;
+            touchesGrapple = false;
+            secondMagnetBulletFired = false;
+            magnetBulletFired = false;
+        }
+
         if (isGrappling)
         {
             onGround = true;
