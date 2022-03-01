@@ -17,6 +17,7 @@ public class Restart : MonoBehaviour
 
     public void RestartLevel()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         AudioManager _audio = FindObjectOfType<AudioManager>();
         if (null != _audio) _audio.Play("Reset");
