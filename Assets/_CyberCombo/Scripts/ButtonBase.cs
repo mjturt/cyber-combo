@@ -20,7 +20,7 @@ public class ButtonBase : MonoBehaviour
     {
         if (timer > 0)
             timer--;
-        else if (collect._locked == false)
+        else
         {
             goalPortal.GetComponent<Animator>().SetBool("open", false);
             collect._locked = true;
