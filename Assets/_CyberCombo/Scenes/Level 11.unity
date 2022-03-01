@@ -268,9 +268,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MenuScene
       objectReference: {fileID: 0}
-    - target: {fileID: 1136492912835816348, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 1376948691971115416, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2134080641}
+    - target: {fileID: 1376948691971115416, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376948691971115416, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2571591274058948464, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_Enabled
@@ -423,14 +431,6 @@ PrefabInstance:
     - target: {fileID: 3432076025902638531, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3866042900395815196, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4483808399458461153, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5848961790836841036, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_RootOrder
