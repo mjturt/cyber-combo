@@ -20,6 +20,11 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeLevel(int level)
     {
+        if (GameObject.Find("DialogueDisabler"))
+        {
+            Destroy(GameObject.Find("DialogueDisabler"));
+        }
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("Level " + level);
         AudioManager _audio = FindObjectOfType<AudioManager>();
@@ -40,6 +45,11 @@ public class LevelManager : MonoBehaviour
 
     public void MenuScene()
     {
+        if (GameObject.Find("DialogueDisabler"))
+        {
+            Destroy(GameObject.Find("DialogueDisabler"));
+        }
+
         Time.timeScale = 1f;
         AudioManager _audio = FindObjectOfType<AudioManager>();
         SceneManager.LoadScene("Main menu");
