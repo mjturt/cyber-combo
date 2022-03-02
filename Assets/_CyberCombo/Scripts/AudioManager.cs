@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour {
 
     public void Play (string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (null != s) s.source.Play();
+        if (null != s && !s.source.isPlaying) s.source.Play();
     }
 
     public AudioSource GetSource (string name) {
@@ -40,7 +40,8 @@ public class AudioManager : MonoBehaviour {
 
     public void ChangeSong (string name) {
         foreach (Sound s in sounds) {
-            s.source.Stop();
+            if (!s.name.Equals(name)) // Stop all but new level song
+                s.source.Stop();
         }
         Play(name);
     }

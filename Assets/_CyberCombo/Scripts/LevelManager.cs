@@ -23,9 +23,16 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Level " + level);
         AudioManager _audio = FindObjectOfType<AudioManager>();
-        if (level == 9) {
+        if (level == 0 || level == 13)
+        {
+            if (null != _audio) _audio.ChangeSong("MenuMusic");
+        }
+        else if (level == 12)
+        {
             if (null != _audio) _audio.ChangeSong("BossMusic");
-        } else {
+        } 
+        else
+        {
             if (null != _audio) _audio.ChangeSong("LevelMusic");
         }
         if (null != _audio) _audio.Play("StartLevel");

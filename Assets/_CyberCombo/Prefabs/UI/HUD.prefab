@@ -2038,7 +2038,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1170113798271464444, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4808581412054124071, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
       propertyPath: m_Pivot.x
@@ -2130,7 +2130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4808581412566725216, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4808581412842896088, guid: 62612b9d72547ea45b0d04ffbf953fce, type: 3}
       propertyPath: player
