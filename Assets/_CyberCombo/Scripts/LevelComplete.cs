@@ -18,8 +18,9 @@ public class LevelComplete : MonoBehaviour
         // Save progress if necessary
         int highestLevel = PlayerPrefs.GetInt("HighestLevel");
         string scene = SceneManager.GetActiveScene().name;
-        int currentLevel = int.Parse(scene.Substring(scene.Length - 1));
-        if (highestLevel <= currentLevel && currentLevel < 12) // We will have 12 levels
+        int currentLevel = int.Parse(scene.Substring(6));
+        
+        if (highestLevel <= currentLevel && currentLevel < 13) // We will have 13 levels
             PlayerPrefs.SetInt("HighestLevel", currentLevel + 1);
     }
 }

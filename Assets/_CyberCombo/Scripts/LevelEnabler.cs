@@ -23,7 +23,7 @@ public class LevelEnabler : MonoBehaviour
     {
         Button[] buttons = this.gameObject.GetComponentsInChildren<Button>();
         int highestLevel = PlayerPrefs.GetInt("HighestLevel"); // 0 if no saved progress
-        
+        Debug.Log(highestLevel);
         // Deactivate buttons
         int levelIndex = 0; // Only count levelbuttons
         foreach (Button button in buttons)
