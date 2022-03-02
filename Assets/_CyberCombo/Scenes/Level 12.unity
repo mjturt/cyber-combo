@@ -9577,6 +9577,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2137841701}
+    - target: {fileID: 2980740849657993707, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6415502906391007733, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -9585,6 +9589,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 8594683809881388219, guid: f60c314b2d7494c4c84544d32e6391fc, type: 2}
+    - target: {fileID: 7592652981762495664, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9061422603792790780, guid: d54b8e0d2e4246b458f0cf26edaf08b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -32356,6 +32364,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5049903521406320350, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed71ab7a234690c42b3ac9929ddda5ae, type: 3}
     - target: {fileID: 5462536997848490289, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -32414,6 +32426,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
       propertyPath: Magnet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: iceBullet
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462536997848490293, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}
+      propertyPath: magnetBullet
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5462536997848490294, guid: 432134efcaa99b249bb0599b1b668ecf, type: 3}

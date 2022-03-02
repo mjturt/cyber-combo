@@ -157,13 +157,15 @@ public class PlayerMovement : MonoBehaviour
 
 
             // Stop grappling
-            if (hasJumped || magnetBoots || rocketBoots)
+            if (hasJumped || !magnetBullet)
             {
                 rb.constraints &= ~RigidbodyConstraints2D.FreezePosition;
                 touchesGrapple = false;
                 mBulletInstance.DestroyMagnetBullet();
                 isGrappling = false;
                 secondMagnetBulletFired = false;
+                if (mBulletInstance2)
+                    mBulletInstance2.DestroyMagnetBullet();
             }
         }
         else
