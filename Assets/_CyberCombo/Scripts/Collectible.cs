@@ -20,7 +20,11 @@ public class Collectible : MonoBehaviour
     public Sprite pressedButton;
 
     private AudioManager _audio;
-    
+
+    public bool requireMultipleButtons;
+    public int buttonsLeft;
+
+    private Collider2D currentButton;
     
     void Start()
     {
@@ -44,11 +48,33 @@ public class Collectible : MonoBehaviour
                 }
                 else
                 {
-                    _locked = false;
-                    print("Door unlocked!");
-                    goalPortal.GetComponent<Animator>().SetBool("open", true);
-                    unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
-                    if (null != _audio) _audio.Play("GetKey");
+                    // level 12 with multiple buttons logic
+                    if (requireMultipleButtons)
+                    {
+                        buttonsLeft--;
+                        bool completed = (buttonsLeft == 0);
+
+                        currentButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
+                        if (null != _audio) _audio.Play("GetKey");
+                        currentButton.enabled = false; // Disable trigger
+
+                        if (completed)
+                        {
+                            _locked = false;
+                            print("Door unlocked!");
+                            goalPortal.GetComponent<Animator>().SetBool("open", true);
+                        }
+                    }
+
+                    //normal logic
+                    else
+                    {
+                        _locked = false;
+                        print("Door unlocked!");
+                        goalPortal.GetComponent<Animator>().SetBool("open", true);
+                        unlockButton.GetComponent<SpriteRenderer>().sprite = pressedButton;
+                        if (null != _audio) _audio.Play("GetKey");
+                    }
                 }
 
             }
@@ -92,6 +118,7 @@ public class Collectible : MonoBehaviour
             if (null != _audio) _audio.Play("Info");
             other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             _canPressButton = true;
+            currentButton = other;
         }
         //Pop info text
         else if (other.gameObject.CompareTag("Info"))
@@ -129,6 +156,7 @@ public class Collectible : MonoBehaviour
         {
             other.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             _canPressButton = false;
+            currentButton = null;
         }
         else if (other.gameObject.CompareTag("Info"))
         {
