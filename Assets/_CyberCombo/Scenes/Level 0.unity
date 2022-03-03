@@ -654,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextBox_Virus
       objectReference: {fileID: 0}
+    - target: {fileID: 770412161451405741, guid: 818e10c4913af3249ae8199477bc0bae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 770412161664553772, guid: 818e10c4913af3249ae8199477bc0bae, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -810,6 +814,10 @@ PrefabInstance:
     - target: {fileID: 770412161451405741, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
       propertyPath: m_Name
       value: TextBox_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 770412161451405741, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 770412161664553772, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
       propertyPath: m_AnchorMax.y
