@@ -23953,6 +23953,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7705286969294146045, guid: b62e50cc6cff61b45a90e7bf7dc49ae4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7705286969294146046, guid: b62e50cc6cff61b45a90e7bf7dc49ae4, type: 3}
       propertyPath: m_Name
       value: EnemyBig (3)
