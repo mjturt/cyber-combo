@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
     private PlayerMovement pM;
     private Rigidbody2D rb;
     private Animator anim;
+    private SpriteRenderer sr;
     
     private GameObject following;
     private float interested;
@@ -33,6 +34,7 @@ public class CameraController : MonoBehaviour
         anim = GameObject.Find("Player").GetComponent<Animator>();
         following = GameObject.Find("Player");
         interested = 1f;
+        sr = GameObject.Find("Gun").GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -51,7 +53,10 @@ public class CameraController : MonoBehaviour
             //pM.jumpForce = 0;
             rb.velocity = new Vector2(0, 0);
             pM.inputEnabled = false;
-            anim.enabled = false;
+            //anim.enabled = false;
+            anim.SetBool("binocular",true);
+            if(pM.Gun)
+                sr.enabled = false;
         }
         if(Input.GetKeyUp(KeyCode.C))
         {
@@ -61,7 +66,10 @@ public class CameraController : MonoBehaviour
             //pM.accelerationSpeed = 120f;
             //pM.jumpForce = 500f;
             pM.inputEnabled = true;
-            anim.enabled = true;
+            //anim.enabled = true;
+            anim.SetBool("binocular",false);
+            if(pM.Gun)
+                sr.enabled = true;
         }
     }
     
