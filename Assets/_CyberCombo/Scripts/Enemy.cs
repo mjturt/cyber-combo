@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour {
             BoxCollider2D bc = transform.GetComponent<BoxCollider2D>();
             RaycastHit2D[] results = new RaycastHit2D[5];
             int hitCount = Physics2D.BoxCastNonAlloc(bc.bounds.center, new Vector2(bc.bounds.size.x, bc.bounds.size.y * 0.9f), // 0.9f to avoid detecting floor as wall when falling
-                                                        0f, new Vector2(walkingDirection, 0), results, 0.1f);
+                                                        0f, new Vector2(walkingDirection, 0), results, 0.3f);
 
             for (int i = 0; i < hitCount; i++)
             {
