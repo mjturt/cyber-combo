@@ -575,7 +575,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 770412159660477084, guid: 818e10c4913af3249ae8199477bc0bae, type: 3}
       propertyPath: m_text
-      value: 'Come and get me you pitiful pussy. '
+      value: 'Come and get me you pitiful human being. '
       objectReference: {fileID: 0}
     - target: {fileID: 770412159752783389, guid: 818e10c4913af3249ae8199477bc0bae, type: 3}
       propertyPath: m_AnchorMax.y
