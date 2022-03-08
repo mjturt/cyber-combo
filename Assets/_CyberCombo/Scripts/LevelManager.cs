@@ -58,6 +58,11 @@ public class LevelManager : MonoBehaviour
 
     public void ResumeLevel()
     {
+        if (Time.timeScale == 1f)
+            Time.timeScale = 0f;
+        else
+            Time.timeScale = 1f;
+
         pauseScreen.SetActive(!pauseScreen.activeSelf);
     }
 
