@@ -137,8 +137,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 770412159660477084, guid: 818e10c4913af3249ae8199477bc0bae, type: 3}
       propertyPath: m_text
-      value: "Silence you mortal technician! Play against me and we\u2019ll see how
-        you will cry on your failure and precious chips."
+      value: "Silence you mortal technician! \n\n\nPlay against me and we\u2019ll
+        see how you will cry on your failure and precious chips."
       objectReference: {fileID: 0}
     - target: {fileID: 770412159752783389, guid: 818e10c4913af3249ae8199477bc0bae, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1499,9 +1499,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 770412159660477084, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
       propertyPath: m_text
-      value: "Let's check today's work order. Connection is slow and unstable and
-        everytime I try blah blah blah\u2026 Boooring. Let me just connect to the
-        system and check what is causing these problems."
+      value: "Let's check today's work order. \n\nConnection is slow and unstable
+        and everytime I try blah blah blah\u2026 Boooring. \n\nLet me just connect
+        to the system and check what is causing these problems."
+      objectReference: {fileID: 0}
+    - target: {fileID: 770412159660477085, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 94.8359
+      objectReference: {fileID: 0}
+    - target: {fileID: 770412159660477085, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 29.441101
       objectReference: {fileID: 0}
     - target: {fileID: 770412159752783389, guid: 4b83e2f7a39f9194eb78e3ce648385c2, type: 3}
       propertyPath: m_AnchorMax.y
